@@ -2,15 +2,6 @@ import CollectionList from "@/components/collections";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import TrendingCarousel from "@/components/trending-carousel";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 
 export default function Home() {
   return (

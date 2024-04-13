@@ -8,7 +8,7 @@ const Footer = () => {
         <span className="inline-block ml-[3px] w-[5px] h-[5px] bg-black" />
       </h1> */}
       <Image
-        src="/logo.svg"
+        src="/icons/logo.svg"
         alt="logo"
         height={27}
         width={176}
@@ -17,7 +17,7 @@ const Footer = () => {
       <div className="flex items-center gap-6">
         <a href="https://www.facebook.com/" target="_blank">
           <Image
-            src="/facebook.svg"
+            src="/icons/facebook.svg"
             alt="Facebook"
             width={24}
             height={24}
@@ -26,7 +26,7 @@ const Footer = () => {
         </a>
         <a href="https://www.twitter.com/" target="_blank">
           <Image
-            src="/twitter.svg"
+            src="/icons/twitter.svg"
             alt="Twitter"
             width={24}
             height={24}
@@ -35,7 +35,7 @@ const Footer = () => {
         </a>
         <a href="https://www.discord.com/" target="_blank">
           <Image
-            src="/discord.svg"
+            src="/icons/discord.svg"
             alt="Discord"
             width={24}
             height={24}
@@ -44,7 +44,7 @@ const Footer = () => {
         </a>
         <a href="https://www.instagram.com/" target="_blank">
           <Image
-            src="/insta.svg"
+            src="/icons/insta.svg"
             alt="Instagram"
             width={24}
             height={24}
