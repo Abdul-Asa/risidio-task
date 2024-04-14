@@ -1,13 +1,11 @@
-"use client";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { useAtom, useAtomValue } from "jotai";
-import { applicationState, sidebarState } from "@/lib/jotai";
+import { getUserCookie } from "@/lib/server-actions";
 import SideBar from "./sidebar";
+import AccountButton from "./account-button";
 
-const Header = () => {
-  const appState = useAtomValue(applicationState);
-  const [trigger, setTrigger] = useAtom(sidebarState);
+const Header = async () => {
+  const userSession = await getUserCookie();
 
   return (
     <nav className="flex items-center justify-between ">
@@ -17,16 +15,15 @@ const Header = () => {
           <span className="lg:inline-block ml-[3px] size-[5px] hidden bg-black" />
         </h1>
       </Link>
-      {appState.isLoggedIn ? (
-        <Button variant={"outline"} onClick={() => setTrigger(true)}>
-          Account
-        </Button>
+      {userSession.isLoggedIn ? (
+        <AccountButton />
       ) : (
         <Link href={"/connect"} className="scale-75 sm:scale-100">
           <Button variant={"outline"}>Connect Wallet</Button>
         </Link>
       )}
-      {appState.isLoggedIn && <SideBar {...appState.user} />}
+
+      {userSession.isLoggedIn && <SideBar {...userSession} />}
     </nav>
   );
 };

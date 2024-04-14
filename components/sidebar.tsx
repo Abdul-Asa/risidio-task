@@ -1,11 +1,13 @@
+"use client";
 import { cn } from "@/lib/utils";
-import { ChevronsRight, ClipboardCopy, Copy } from "lucide-react";
+import { ChevronsRight, Copy } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import Image from "next/image";
-import { useAtom, useSetAtom } from "jotai";
-import { sidebarState, userState } from "@/lib/jotai";
+import { useAtom } from "jotai";
+import { sidebarState } from "@/lib/jotai";
 import { userType } from "@/lib/types";
 import { Button } from "./ui/button";
+import { removeUserCookie } from "@/lib/server-actions";
 
 const SideBar = ({
   id,
@@ -15,7 +17,6 @@ const SideBar = ({
   nftCollections,
 }: userType) => {
   const [trigger, setTrigger] = useAtom(sidebarState);
-  const setUser = useSetAtom(userState);
   return (
     <div
       className={cn(
@@ -56,14 +57,7 @@ const SideBar = ({
             size={"icon"}
             onClick={() => {
               setTrigger(false);
-              setUser({
-                id: "",
-                name: "",
-                amount: 0,
-                currency: "",
-                wallet: "",
-                nftCollections: [],
-              });
+              removeUserCookie();
             }}
           >
             <Image

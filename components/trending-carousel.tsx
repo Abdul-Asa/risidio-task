@@ -8,9 +8,10 @@ import { Button } from "./ui/button";
 import { collectionItemType, NftType } from "@/lib/types";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useAtomValue, useSetAtom } from "jotai";
-import { applicationState, sidebarState, userState } from "@/lib/jotai";
+import { useSetAtom } from "jotai";
+import { sidebarState } from "@/lib/jotai";
 import { useRouter } from "next/navigation";
+import { getUserCookie, updateUserData } from "@/lib/server-actions";
 
 const TrendingCarousel = ({
   slug,
@@ -20,20 +21,23 @@ const TrendingCarousel = ({
   nftList,
 }: collectionItemType) => {
   const router = useRouter();
-  const appState = useAtomValue(applicationState);
-  const updateUser = useSetAtom(userState);
-  const openTrigger = useSetAtom(sidebarState);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
+  const setTrigger = useSetAtom(sidebarState);
 
-  const handleBuy = (item: NftType) => {
-    if (!appState.isLoggedIn) router.push("/connect");
+  const handleBuy = async (item: NftType) => {
+    const { isLoggedIn, nftCollections, ...others } = await getUserCookie();
+    if (!isLoggedIn) router.push("/connect");
     else {
-      openTrigger(true);
-      updateUser((prev) => ({
-        ...prev,
-        nftCollections: [...prev.nftCollections, item],
-      }));
+      const itemExists = nftCollections.find((nft) => nft.id === item.id);
+      if (!itemExists) {
+        updateUserData({
+          isLoggedIn,
+          nftCollections: [item, ...nftCollections],
+          ...others,
+        });
+      }
+      setTrigger(true);
     }
   };
 

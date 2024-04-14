@@ -28,6 +28,7 @@ type userType = {
   currency: string;
   wallet: string;
   nftCollections: NftType[];
+  isLoggedIn: boolean;
 };
 
 type applicationType = {

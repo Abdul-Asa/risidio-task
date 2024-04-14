@@ -2,11 +2,12 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { applicationState, sidebarState, userState } from "@/lib/jotai";
+import { sidebarState } from "@/lib/jotai";
+import { getUserCookie, updateUserData } from "@/lib/server-actions";
 import { collectionItemType, NftType } from "@/lib/types";
-import { useAtomValue, useSetAtom } from "jotai";
+import { useSetAtom } from "jotai";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const NFTPage = ({
   title,
@@ -72,21 +73,24 @@ const NFTCard = ({
   id,
 }: NftType & { currency: string }) => {
   const router = useRouter();
-  const appState = useAtomValue(applicationState);
-  const openTrigger = useSetAtom(sidebarState);
-  const updateUser = useSetAtom(userState);
+  const pathName = usePathname();
+  const setTrigger = useSetAtom(sidebarState);
 
-  const handleBuy = (item: NftType) => {
-    if (!appState.isLoggedIn) router.push("/connect");
+  const handleBuy = async (item: NftType) => {
+    const { isLoggedIn, nftCollections, ...others } = await getUserCookie();
+    if (!isLoggedIn) router.push(`/connect?from=${pathName}`);
     else {
-      openTrigger(true);
-      updateUser((prev) => ({
-        ...prev,
-        nftCollections: [...prev.nftCollections, item],
-      }));
+      const itemExists = nftCollections.find((nft) => nft.id === item.id);
+      if (!itemExists) {
+        updateUserData({
+          isLoggedIn,
+          nftCollections: [item, ...nftCollections],
+          ...others,
+        });
+      }
+      setTrigger(true);
     }
   };
-
   return (
     <div className="flex flex-col p-6 group bg-white rounded-[47px] shadow-tile cursor-pointer hover:shadow-hover border-none transition">
       <div className="relative  bg-black/20 flex h-80 justify-center rounded-[34px]  overflow-hidden">
