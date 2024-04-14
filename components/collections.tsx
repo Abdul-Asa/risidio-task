@@ -55,7 +55,7 @@ const CollectionCard = ({
         <div className="absolute inset-0 bg-black/60 hidden group-hover:block" />
       </div>
       <div className="flex items-center justify-between mt-10">
-        <p className="text-[24px] font-bold">{title}</p>
+        <p className="text-[24px] font-bold line-clamp-1">{title}</p>
         <Badge className="text-black bg-[#E1EDD9]">{numberOfNFTs} NFT</Badge>
       </div>
       <div className="text-[14px] font-normal my-4 line-clamp-3">

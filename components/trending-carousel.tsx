@@ -75,14 +75,14 @@ const TrendingCarousel = ({
           />
         ))}
       </div>
-      <div className="bg-[#E6E9F2] rounded-2xl px-10 py-8">
-        <div className="flex justify-between gap-20">
-          <div className="w-full flex flex-col justify-between p-8">
+      <div className="bg-[#E6E9F2] rounded-[57px] lg:px-10 lg:py-8 p-3">
+        <div className="flex lg:flex-row flex-col-reverse items-center justify-between gap-8 lg:gap-20">
+          <div className="w-full flex flex-col justify-between items-center lg:items-start lg:p-8">
             <div className="mb-8">
               <Badge className="text-black bg-[#FADFE4]">Trending Now</Badge>
             </div>
             <p className="text-muted-foreground  text-xl">{title} collection</p>
-            <h1 className="text-5xl font-extrabold tracking-wide">
+            <h1 className="lg:text-5xl text-2xl font-extrabold tracking-wide">
               {currentItem.title}
             </h1>
             <div className="flex gap-4 py-5">
@@ -95,7 +95,7 @@ const TrendingCarousel = ({
                 <p>{artist}</p>
               </div>
             </div>
-            <div className="flex gap-4 pt-4">
+            <div className="flex flex-col lg:flex-row gap-4 pt-4">
               <Button className="w-48" onClick={() => handleBuy(currentItem)}>
                 Buy
               </Button>
@@ -111,7 +111,7 @@ const TrendingCarousel = ({
             alt={currentItem.title}
             height={411}
             width={437}
-            className="size-[400px] rounded-[47px]"
+            className="lg:size-[400px] rounded-[47px]"
           />
         </div>
       </div>

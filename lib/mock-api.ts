@@ -170,7 +170,7 @@ export const walletList = [
     icon: "/trust-wallet.svg",
   },
   {
-    name: "Coinbase Wallet",
+    name: "Coinbase",
     icon: "/coinbase-wallet.svg",
   },
 ];

@@ -12,9 +12,9 @@ const Header = () => {
   return (
     <nav className="flex items-center justify-between ">
       <Link href={"/"}>
-        <h1 className="text-3xl font-extrabold uppercase">
+        <h1 className="lg:text-3xl font-extrabold uppercase">
           Marketplace
-          <span className="inline-block ml-[3px] w-[5px] h-[5px] bg-black" />
+          <span className="lg:inline-block ml-[3px] size-[5px] hidden bg-black" />
         </h1>
       </Link>
       {appState.isLoggedIn ? (
@@ -22,7 +22,7 @@ const Header = () => {
           Account
         </Button>
       ) : (
-        <Link href={"connect"}>
+        <Link href={"/connect"} className="scale-75 sm:scale-100">
           <Button variant={"outline"}>Connect Wallet</Button>
         </Link>
       )}

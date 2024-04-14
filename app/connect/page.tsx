@@ -13,18 +13,18 @@ const ConnectWalletPage = () => {
   const setUser = useSetAtom(userState);
 
   return (
-    <main className="flex flex-col gap-8 h-screen px-20 py-8 bg-[#E6E9F2]">
+    <main className="flex flex-col lg:gap-8 h-screen lg:px-20 px-4 py-8 bg-[#E6E9F2]">
       <Header />
       <section className="flex flex-col h-full justify-center items-center">
-        <h1 className="text-2xl font-extrabold">
+        <h1 className="lg:text-2xl text-lg font-extrabold">
           Choose the wallet to connect
         </h1>
-        <div className="flex gap-6 p-16 justify-evenly w-full">
+        <div className="flex lg:flex-row flex-col gap-6 p-4 lg:p-16 items-center justify-evenly w-full">
           {walletList.map((wallet) => (
             <Button
               key={wallet.name}
               variant={"ghost"}
-              className=" size-40 bg-white rounded-xl flex justify-center items-center hover:border-2"
+              className=" lg:size-40 size-20 bg-white rounded-xl flex justify-center items-center hover:border-2"
               onClick={() => {
                 setUser({
                   id: "STV6Q...4Z7WD",
@@ -37,7 +37,7 @@ const ConnectWalletPage = () => {
                 router.push("/");
               }}
             >
-              <p>{wallet.name}</p>
+              <p className="text-xs lg:text-base">{wallet.name}</p>
             </Button>
           ))}
         </div>

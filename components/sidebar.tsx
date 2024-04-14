@@ -20,7 +20,7 @@ const SideBar = ({
     <div
       className={cn(
         trigger ? "translate-x-0" : "translate-x-full",
-        "h-[700px] w-[400px] top-2 right-0 fixed z-20 pr-10",
+        "h-[95vh] sm:w-[400px] w-full pl-10 top-2 right-0 fixed z-20 lg:pr-10",
         "transition-transform duration-500"
       )}
     >

@@ -18,16 +18,20 @@ const NFTPage = ({
   nftList,
 }: collectionItemType) => {
   return (
-    <section className="flex flex-col py-8 gap-4">
-      <div className="p-10 ">
-        <div className="flex justify-between gap-20">
-          <div className="w-full flex flex-col justify-between p-8">
+    <section className="flex flex-col py-2 lg:py-8 gap-4">
+      <div className="lg:p-10 ">
+        <div className="flex flex-col-reverse lg:flex-row justify-between gap-3 lg:gap-20">
+          <div className="w-full flex flex-col items-center lg:items-start justify-between lg:p-8">
             <div className="mb-6">
               <Badge className="text-black bg-[#FADFE4]">Trending Now</Badge>
             </div>
             <p className="text-muted-foreground text-xl">Collection</p>
-            <h1 className="text-5xl font-extrabold tracking-wide">{title}</h1>
-            <div className="py-3 leading-7">{description}</div>
+            <h1 className="lg:text-5xl text-3xl font-extrabold tracking-wide">
+              {title}
+            </h1>
+            <div className="py-3 text-center lg:text-start leading-7">
+              {description}
+            </div>
             <div className="flex gap-4 py-5">
               <Avatar className="size-12">
                 <AvatarImage src={avatar} alt="avatar" />
@@ -44,7 +48,7 @@ const NFTPage = ({
             alt={title}
             height={411}
             width={437}
-            className="size-[400px] rounded-[47px]"
+            className="lg:size-[400px] rounded-[47px]"
           />
         </div>
       </div>
