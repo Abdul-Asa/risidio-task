@@ -9,7 +9,7 @@ import { collectionItemType } from "@/lib/types";
 const CollectionList = () => {
   return (
     <section className="flex flex-col py-10 gap-5 mb-10">
-      <h1 className="text-[24px] font-extrabold ">Collections</h1>
+      <h2 className="text-[24px] font-extrabold ">Collections</h2>
       <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
         {collectionItems.map((collection) => (
           <CollectionCard key={collection.slug} {...collection} />

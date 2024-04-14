@@ -27,9 +27,9 @@ const ConnectWalletPage = () => {
               className=" size-40 bg-white rounded-xl flex justify-center items-center hover:border-2"
               onClick={() => {
                 setUser({
-                  id: "123",
+                  id: "STV6Q...4Z7WD",
                   name: "John Doe",
-                  amount: 0,
+                  amount: 120,
                   currency: "BTC",
                   wallet: wallet.name,
                   nftCollections: [],

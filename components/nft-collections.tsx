@@ -2,9 +2,11 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { applicationState, sidebarState, userState } from "@/lib/jotai";
 import { collectionItemType, NftType } from "@/lib/types";
+import { useAtomValue, useSetAtom } from "jotai";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const NFTPage = ({
   title,
@@ -47,7 +49,7 @@ const NFTPage = ({
         </div>
       </div>
       <section className="flex flex-col py-10 gap-5 my-10">
-        <h1 className="text-[24px] font-extrabold ">NFTs</h1>
+        <h2 className="text-[24px] font-extrabold ">NFTs</h2>
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {nftList.map((nft) => (
             <NFTCard key={nft.id} currency={currency} {...nft} />
@@ -63,7 +65,24 @@ const NFTCard = ({
   title,
   price,
   currency,
+  id,
 }: NftType & { currency: string }) => {
+  const router = useRouter();
+  const appState = useAtomValue(applicationState);
+  const openTrigger = useSetAtom(sidebarState);
+  const updateUser = useSetAtom(userState);
+
+  const handleBuy = (item: NftType) => {
+    if (!appState.isLoggedIn) router.push("/connect");
+    else {
+      openTrigger(true);
+      updateUser((prev) => ({
+        ...prev,
+        nftCollections: [...prev.nftCollections, item],
+      }));
+    }
+  };
+
   return (
     <div className="flex flex-col p-6 group bg-white rounded-[47px] shadow-tile cursor-pointer hover:shadow-hover border-none transition">
       <div className="relative  bg-black/20 flex h-80 justify-center rounded-[34px]  overflow-hidden">
@@ -76,7 +95,7 @@ const NFTCard = ({
         <Button
           variant={"secondary"}
           className="absolute bottom-1/2 z-10 left-1/2 -translate-x-1/2 translate-y-1/2 hidden group-hover:block"
-          onClick={() => alert(title)}
+          onClick={() => handleBuy({ image, title, price, id })}
         >
           Buy
         </Button>

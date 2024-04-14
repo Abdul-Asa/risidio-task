@@ -1,13 +1,16 @@
 "use client";
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { useAtomValue } from "jotai";
-import { applicationState } from "@/lib/jotai";
+import { useAtom, useAtomValue } from "jotai";
+import { applicationState, sidebarState } from "@/lib/jotai";
+import SideBar from "./sidebar";
 
 const Header = () => {
   const appState = useAtomValue(applicationState);
+  const [trigger, setTrigger] = useAtom(sidebarState);
+
   return (
-    <nav className="flex items-center justify-between">
+    <nav className="flex items-center justify-between ">
       <Link href={"/"}>
         <h1 className="text-3xl font-extrabold uppercase">
           Marketplace
@@ -15,12 +18,15 @@ const Header = () => {
         </h1>
       </Link>
       {appState.isLoggedIn ? (
-        <Button variant={"outline"}>Account</Button>
+        <Button variant={"outline"} onClick={() => setTrigger(true)}>
+          Account
+        </Button>
       ) : (
         <Link href={"connect"}>
           <Button variant={"outline"}>Connect Wallet</Button>
         </Link>
       )}
+      {appState.isLoggedIn && <SideBar {...appState.user} />}
     </nav>
   );
 };

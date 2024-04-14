@@ -5,9 +5,12 @@ import Image from "next/image";
 import { Progress } from "./ui/progress";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
-import { collectionItemType } from "@/lib/types";
+import { collectionItemType, NftType } from "@/lib/types";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useAtomValue, useSetAtom } from "jotai";
+import { applicationState, sidebarState, userState } from "@/lib/jotai";
+import { useRouter } from "next/navigation";
 
 const TrendingCarousel = ({
   slug,
@@ -16,8 +19,23 @@ const TrendingCarousel = ({
   avatar,
   nftList,
 }: collectionItemType) => {
+  const router = useRouter();
+  const appState = useAtomValue(applicationState);
+  const updateUser = useSetAtom(userState);
+  const openTrigger = useSetAtom(sidebarState);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
+
+  const handleBuy = (item: NftType) => {
+    if (!appState.isLoggedIn) router.push("/connect");
+    else {
+      openTrigger(true);
+      updateUser((prev) => ({
+        ...prev,
+        nftCollections: [...prev.nftCollections, item],
+      }));
+    }
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -78,7 +96,7 @@ const TrendingCarousel = ({
               </div>
             </div>
             <div className="flex gap-4 pt-4">
-              <Button className="w-48" onClick={() => alert(currentItem.title)}>
+              <Button className="w-48" onClick={() => handleBuy(currentItem)}>
                 Buy
               </Button>
               <Link href={`/collections/${slug}`}>

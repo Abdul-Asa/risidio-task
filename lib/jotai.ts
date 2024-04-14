@@ -12,8 +12,12 @@ export const userState = atom<userType>({
 
 export const applicationState = atom((get) => {
   const user = get(userState);
+  const isSideBarOpen = get(sidebarState);
   return {
     isLoggedIn: user.id !== "",
     user: user,
+    isSideBarOpen: isSideBarOpen,
   };
 });
+
+export const sidebarState = atom(false);
