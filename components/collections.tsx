@@ -19,7 +19,7 @@ const CollectionList = () => {
   );
 };
 
-const CollectionCard = ({
+export const CollectionCard = ({
   image,
   title,
   description,

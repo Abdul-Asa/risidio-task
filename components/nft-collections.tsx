@@ -65,7 +65,7 @@ const NFTPage = ({
   );
 };
 
-const NFTCard = ({
+export const NFTCard = ({
   image,
   title,
   price,
