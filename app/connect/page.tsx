@@ -1,5 +1,5 @@
-import Header from "@/components/header";
-import { WalletList } from "../../components/wallet-list";
+import Header from "@/components/layouts/header";
+import { WalletList } from "./wallet-list";
 import { getUserCookie } from "@/lib/server-actions";
 import { redirect } from "next/navigation";
 

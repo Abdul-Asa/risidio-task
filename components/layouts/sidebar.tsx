@@ -1,12 +1,12 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { ChevronsRight, Copy } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import Image from "next/image";
 import { useAtom } from "jotai";
 import { sidebarState } from "@/lib/jotai";
 import { userType } from "@/lib/types";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { removeUserCookie } from "@/lib/server-actions";
 
 const SideBar = ({

@@ -1,6 +1,6 @@
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import NFTPage from "@/components/nft-collections";
+import Footer from "@/components/layouts/footer";
+import Header from "@/components/layouts/header";
+import NFTPage from "@/app/collections/[slug]/nft-collections";
 import { collectionItems } from "@/lib/mock-api";
 
 const CollectionPage = ({ params }: { params: { slug: string } }) => {

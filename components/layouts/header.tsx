@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { getUserCookie } from "@/lib/server-actions";
 import SideBar from "./sidebar";
 import AccountButton from "./account-button";

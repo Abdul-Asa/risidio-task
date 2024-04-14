@@ -1,6 +1,6 @@
 import CollectionList from "@/components/collections";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
+import Footer from "@/components/layouts/footer";
+import Header from "@/components/layouts/header";
 import TrendingCarousel from "@/components/trending-carousel";
 import { collectionItems } from "@/lib/mock-api";
 

@@ -1,6 +1,6 @@
 import { CollectionCard } from "./collections";
-import { NFTCard } from "./nft-collections";
-import SideBar from "./sidebar";
+import { NFTCard } from "../app/collections/[slug]/nft-collections";
+import SideBar from "./layouts/sidebar";
 import TrendingCarousel from "./trending-carousel";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
