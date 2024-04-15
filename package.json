@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run db:init && next build",
+    "build": "npm run db:migrate && next build",
     "start": "next start",
     "lint": "next lint",
     "db:migrate": "drizzle-kit push:sqlite",
