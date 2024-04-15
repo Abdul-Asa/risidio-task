@@ -4,16 +4,22 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run db:init && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:migrate": "drizzle-kit push:sqlite",
+    "db:seed": "tsx ./db/seed.ts",
+    "db:init": "npm run db:migrate && npm run db:seed",
+    "db:init:local": "dotenv -e .env.local npm run db:init"
   },
   "dependencies": {
+    "@libsql/client": "^0.6.0",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-progress": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "drizzle-orm": "^0.30.8",
     "jotai": "^2.8.0",
     "lucide-react": "^0.368.0",
     "next": "14.2.0",
@@ -26,10 +32,14 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "dotenv": "^16.4.5",
+    "dotenv-cli": "^7.4.1",
+    "drizzle-kit": "^0.20.14",
     "eslint": "^8",
     "eslint-config-next": "14.2.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.7.2",
     "typescript": "^5"
   }
 }

@@ -1,4 +1,4 @@
-type collectionItemType = {
+type Collection = {
   id: number;
   slug: string;
   title: string;
@@ -11,29 +11,29 @@ type collectionItemType = {
   highestPrice: number;
   numberOfNFTs: number;
   currency: string;
-  nftList: NftType[];
+  nftList: Nft[];
 };
 
-type NftType = {
+type Nft = {
   id: number;
   title: string;
   image: string;
   price: number;
 };
 
-type userType = {
+type User = {
   id: string;
   name: string;
   amount: number;
   currency: string;
   wallet: string;
-  nftCollections: NftType[];
+  nftCollections: User[];
   isLoggedIn: boolean;
 };
 
-type applicationType = {
+type App = {
   isLoggedIn: boolean;
-  user: userType;
+  user: User;
 };
 
-export type { collectionItemType, NftType, userType, applicationType };
+export type { Collection, Nft, User, App };
