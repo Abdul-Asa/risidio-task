@@ -13,6 +13,7 @@ import {
 export const getSingleCollection = async (
   slug: string
 ): Promise<CollectionWithNfts> => {
+  console.log("🗿");
   const records = await db.query.collections.findFirst({
     where: eq(collections.slug, slug),
     with: {
@@ -39,6 +40,7 @@ export const getSingleCollection = async (
 };
 
 export const getAllCollections = async (): Promise<CollectionWithNfts[]> => {
+  console.log("Broooo!!");
   const records = await db.query.collections.findMany({
     with: {
       nftCollections: {
