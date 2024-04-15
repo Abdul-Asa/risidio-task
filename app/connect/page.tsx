@@ -12,13 +12,13 @@ const ConnectWalletPage = async () => {
     redirect("/");
   }
   return (
-    <main className="flex flex-col flex-grow lg:px-[80px]  pt-[33px] bg-[#E6E9F2]  h-screen">
+    <main className="flex flex-col flex-grow lg:px-[80px]  pt-[33px] p-4 bg-[#E6E9F2]  h-screen">
       <Header />
       <section className="flex flex-col h-full justify-center items-center">
         <h1 className="lg:text-[32px] leading-[38.73px] text-lg font-extrabold">
           Choose the wallet to connect
         </h1>
-        <div className="flex lg:flex-row flex-col gap-[63px] p-4 lg:p-16 items-center justify-center w-full">
+        <div className="flex lg:flex-row flex-col gap-4 lg:gap-[63px] p-4 lg:p-16 items-center justify-center w-full">
           <WalletList wallets={wallets} />
         </div>
       </section>

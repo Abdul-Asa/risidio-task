@@ -60,7 +60,7 @@ export const CollectionCard = ({
         </Button>
         <div className="absolute inset-0 bg-black/60 hidden group-hover:block" />
       </div>
-      <div className="flex items-center justify-between pt-[40px] pb-[30px] px-[14px]">
+      <div className="flex items-center sm:flex-row justify-between flex-col  pt-[40px] pb-[30px] px-[14px]">
         <p className="text-[24px] max-w-[300px] font-bold truncate">{title}</p>
         <Badge className="text-black bg-[#E1EDD9]">{numberOfNfts} NFT</Badge>
       </div>

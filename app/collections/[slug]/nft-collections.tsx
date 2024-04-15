@@ -18,9 +18,8 @@ const NFTPage = ({
   avatar,
   nfts,
 }: CollectionWithNfts) => {
-  console.log(description);
   return (
-    <section className="flex flex-col py-2 lg:pt-[130px] gap-[134px]">
+    <section className="flex flex-col py-2 pt-10 lg:pt-[130px] gap-[134px]">
       <div className=" lg:pr-[87px] lg:pl-[74px] flex flex-col-reverse lg:flex-row justify-between gap-3 lg:gap-20">
         <div className="w-full h-[411px] flex flex-col items-center lg:items-start">
           <div className="mb-[37px]">
@@ -103,7 +102,7 @@ export const NFTCard = ({ image, title, price, currency, id }: Nft) => {
         </Button>
         <div className="absolute inset-0 bg-black/60 hidden group-hover:block" />
       </div>
-      <div className="flex items-center justify-between px-[5px] py-[42px]">
+      <div className="flex items-center sm:flex-row justify-between flex-col  px-[5px] py-[42px]">
         <p className="text-[24px] max-w-[300px] font-bold truncate">{title}</p>
         <Badge className="text-black bg-[#D4D3EB]">
           {price} {currency}

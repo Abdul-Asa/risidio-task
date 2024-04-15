@@ -14,7 +14,7 @@ export const WalletList = ({ wallets }: { wallets: Array<Wallet> }) => {
     <Button
       key={wallet.name}
       variant={"ghost"}
-      className=" lg:w-[191px] lg:h-[174px] size-40 bg-white rounded-[19px] flex justify-center items-center hover:border-2"
+      className=" lg:w-[191px] lg:h-[174px] p-2 lg:p-10 md:size-32 size-16 bg-white rounded-[19px] flex justify-center items-center hover:border-2"
       onClick={() => {
         toast.success("Wallet connected successfully");
         setUserCookie(

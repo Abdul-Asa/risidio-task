@@ -45,7 +45,7 @@ const SideBar = ({
       <div
         className={cn(
           !staticDisplay && trigger ? "translate-x-0" : "translate-x-full",
-          "h-[981px] w-[492px] top-0 right-0 fixed z-20 p-[16px]",
+          "lg:h-[981px] lg:w-[492px] w-[90%] h-screen top-0 right-0 fixed z-20 lg:p-[16px]",
           "transition-transform duration-500"
         )}
       >

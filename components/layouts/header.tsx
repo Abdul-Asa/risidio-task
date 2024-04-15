@@ -21,7 +21,7 @@ const Header = async () => {
   const cart = await getUserWalletNftCart(walletId);
 
   return (
-    <nav className="flex items-center justify-between ">
+    <nav className="flex items-center flex-col gap-4 sm:flex-row justify-between ">
       <Link href={"/"}>
         <Image src="/icons/logo.svg" alt="logo" width={255} height={39} />
       </Link>
