@@ -49,7 +49,7 @@ const SideBar = ({
           "transition-transform duration-500"
         )}
       >
-        <div className="border-2 h-[981px] border-[#02071D] bg-background rounded-[13px] flex flex-col relative">
+        <div className="border-2 h-screen border-[#02071D] bg-background rounded-[13px] flex flex-col relative">
           {!staticDisplay && trigger && (
             <div
               className="absolute bg-[#D4D4D43B] h-[975px] mt-[6px] w-[65px] -translate-x-1/2 backdrop-blur-md  -z-10 rounded-[13px]"

@@ -81,7 +81,7 @@ const TrendingCarousel = ({
       </div>
       <div className="bg-[#E6E9F2] rounded-[30px] w-full lg:h-[518px] xl:pr-[87px] xl:pt-[47px] xl:pb-[60px] xl:pl-[74px] p-8">
         <div className="flex lg:flex-row flex-col-reverse items-center justify-between gap-8 ">
-          <div className="lg:h-[411px] items-center flex flex-col  w-full lg:py-[24px]">
+          <div className="lg:h-[411px] lg:items-start items-center flex flex-col  w-full lg:py-[24px]">
             <div className="mb-[37px]">
               <Badge className="text-black bg-[#FADFE4]">Trending Now</Badge>
             </div>

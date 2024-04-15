@@ -34,14 +34,94 @@ const Components = () => {
       <div className="p-5 gap-4 flex flex-col">
         <h2 className="text-2xl font-bold">Cards</h2>
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          <CollectionCard {...collectionItems[0]} />
-          <NFTCard currency="ETH" {...collectionItems[0].nftList[3]} />
+          <CollectionCard
+            id={0}
+            title={"Night sky"}
+            description={
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            }
+            slug={"night-sky"}
+            avatar={"/avatars/avatar.svg"}
+            image={"/images/clouds.svg"}
+            trending={false}
+            lowestPrice={0.12}
+            highestPrice={0.18}
+            numberOfNfts={6}
+            artist={"Léa Jacquot"}
+            nfts={[
+              {
+                id: 0,
+                title: "Night is coming",
+                image: "/images/clouds.svg",
+                price: 0.12,
+                currency: "BTC",
+              },
+              {
+                id: 1,
+                title: "With the stars",
+                image: "/images/star.svg",
+                price: 0.12,
+                currency: "BTC",
+              },
+              {
+                id: 2,
+                title: "Summer",
+                image: "/images/summer.svg",
+                price: 0.12,
+                currency: "BTC",
+              },
+            ]}
+          />
+          <NFTCard
+            currency="ETH"
+            id={0}
+            title={"Night is coming"}
+            image={"/images/quiet.svg"}
+            price={0.12}
+          />
         </div>
       </div>
       <div className="flex flex-col w-full">
         <h2 className="text-2xl font-bold">Carousel</h2>
         <div className="flex w-full scale-75">
-          <TrendingCarousel {...collectionItems[1]} />
+          <TrendingCarousel
+            id={0}
+            title={"Day Clouds"}
+            description={
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            }
+            slug={"night-sky"}
+            avatar={"/avatars/avatar.svg"}
+            image={"/images/clouds.svg"}
+            trending={false}
+            lowestPrice={0.12}
+            highestPrice={0.18}
+            numberOfNfts={6}
+            artist={"Léa Jacquot"}
+            nfts={[
+              {
+                id: 0,
+                title: "Night is coming",
+                image: "/images/future.png",
+                price: 0.12,
+                currency: "BTC",
+              },
+              {
+                id: 1,
+                title: "With the stars",
+                image: "/images/nature.png",
+                price: 0.12,
+                currency: "BTC",
+              },
+              {
+                id: 2,
+                title: "Summer",
+                image: "/images/summer.svg",
+                price: 0.12,
+                currency: "BTC",
+              },
+            ]}
+          />
         </div>
       </div>
     </div>

@@ -13,30 +13,34 @@ export const collectionItems = [
     highestPrice: 0.18,
     numberOfNFTs: 120,
     currency: "BTC",
-    nftList: [
+    nfts: [
       {
         id: 1.1,
         title: "Night is coming",
         image: "/images/clouds.svg",
         price: 0.12,
+        currency: "BTC",
       },
       {
         id: 1.2,
         title: "With the stars",
         image: "/images/star.svg",
         price: 0.12,
+        currency: "BTC",
       },
       {
         id: 1.3,
         title: "Summer",
         image: "/images/summer.svg",
         price: 0.12,
+        currency: "BTC",
       },
       {
         id: 1.4,
         title: "Quiet",
         image: "/images/quiet.svg",
         price: 0.12,
+        currency: "BTC",
       },
       {
         id: 1.5,
