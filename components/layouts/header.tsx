@@ -9,7 +9,15 @@ import { getUserWalletNftCart, getWallet } from "../../db/queries";
 const Header = async () => {
   const userSession = await getUserCookie();
   const walletId = Number(userSession.walletId);
-  const wallet = await getWallet(walletId);
+  const wallet = (await getWallet(walletId)) || {
+    id: 0,
+    name: "Fake Wallet",
+    icon: "/icons/metamask.svg",
+    address: "Binance123",
+    currency: "ETH",
+    amount: 0.29,
+  };
+
   const cart = await getUserWalletNftCart(walletId);
 
   return (

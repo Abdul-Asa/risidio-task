@@ -8,108 +8,135 @@ import { sidebarState } from "@/lib/jotai";
 import { removeUserCookie } from "@/lib/server-actions";
 import { CartWithNfts, Wallet } from "@/db/schema";
 import { Button } from "../ui/button";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
 const SideBar = ({
   cart,
   wallet,
-  display = false,
+  staticDisplay = false,
 }: {
   cart?: CartWithNfts | null;
   wallet: Wallet;
-  display?: boolean;
+  staticDisplay?: boolean;
 }) => {
   const [trigger, setTrigger] = useAtom(sidebarState);
-  return (
-    <div
-      className={cn(
-        !display && trigger ? "translate-x-0" : "translate-x-full",
-        "h-[95vh] sm:w-[400px] w-full pl-10 top-2 right-0 fixed z-20 lg:pr-10",
-        "transition-transform duration-500"
-      )}
-    >
-      {!display && trigger && (
-        <div
-          className="absolute bg-[#D4D4D43B] h-full w-1/2 -z-10  -translate-x-6 backdrop-blur-md rounded-2xl"
-          onClick={() => setTrigger(false)}
-        >
-          <ChevronsRight size={18} className="mt-6 ml-1" />
-        </div>
-      )}
-      <div className="border-2 border-primary bg-background rounded-3xl flex flex-col z-10 w-full h-full">
-        <div className="flex justify-between  w-full p-6">
-          <div className="flex gap-4 items-center">
-            <Avatar className="size-10">
-              <AvatarImage src={"/avatars/avatar2.svg"} alt={"Avatar"} />
-              <AvatarFallback>Bro</AvatarFallback>
-            </Avatar>
-            <div className="flex items-center">
-              <p className="font-normal text-xs">{wallet.address}</p>
-              <Copy
-                className="cursor-pointer ml-2 box-border"
-                size={14}
-                onClick={() => {
-                  navigator.clipboard.writeText(wallet.address);
-                }}
-              />
-            </div>
-          </div>
 
-          <Button
-            variant={"ghost"}
-            size={"icon"}
-            onClick={() => {
-              setTrigger(false);
-              removeUserCookie();
-            }}
-          >
-            <Image
-              src={"/icons/arrow.svg"}
-              height={24}
-              width={24}
-              className="size-8"
-              alt="Arrow icon"
-            />
-          </Button>
-        </div>
-        <div className="p-6 flex flex-col py-8 gap-2">
-          <p className=" text-muted-foreground text-sm">In your wallet</p>
-          <h1 className="font-semibold text-3xl">
-            {wallet.amount} {wallet.currency}
-          </h1>
-        </div>
-        <div className="p-6 flex flex-col overflow-y-scroll gap-5 min-h-80 w-full">
-          <h2 className="text-[16px] font-bold">Your NFTs</h2>
-          {!!cart?.nfts?.length ? (
-            cart?.nfts?.map((nft) => (
-              <div
-                key={nft.id}
-                className="h-40 rounded-[34px] flex  flex-shrink-0 relative overflow-hidden"
-              >
-                <Image
-                  src={nft.image}
-                  fill
-                  className="object-cover"
-                  alt={nft.title}
-                />
-              </div>
-            ))
-          ) : (
-            <div className="w-full justify-center items-center pt-10 flex flex-col gap-10">
-              <p className="text-muted-foreground">
-                You don’t own any NFTs yet
-              </p>
-              <Button
-                onClick={() => {
-                  setTrigger(false);
-                }}
-              >
-                Start Shopping
-              </Button>
+  useEffect(() => {
+    if (trigger && !staticDisplay) {
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [staticDisplay, trigger]);
+
+  return (
+    <>
+      <div
+        className={cn(
+          trigger && !staticDisplay
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none",
+          "fixed inset-0 h-screen bg-black/60 z-10  transition-opacity ease-out duration-500"
+        )}
+      />
+      <div
+        className={cn(
+          !staticDisplay && trigger ? "translate-x-0" : "translate-x-full",
+          "h-[981px] w-[492px] top-0 right-0 fixed z-20 p-[16px]",
+          "transition-transform duration-500"
+        )}
+      >
+        <div className="border-2 h-[981px] border-[#02071D] bg-background rounded-[13px] flex flex-col relative">
+          {!staticDisplay && trigger && (
+            <div
+              className="absolute bg-[#D4D4D43B] h-[975px] mt-[6px] w-[65px] -translate-x-1/2 backdrop-blur-md  -z-10 rounded-[13px]"
+              onClick={() => setTrigger(false)}
+            >
+              <ChevronsRight size={21} className="mt-[34px] ml-[10px]" />
             </div>
           )}
+          <div className="flex justify-between items-center w-full pt-[26px] px-[28px]">
+            <div className="flex gap-4 items-center">
+              <Avatar className="size-[50px] bg-[#29627F]"></Avatar>
+              <div className="flex items-center">
+                <p className="leaiding-[27.02px] text-[16px] ">
+                  {wallet.address}
+                </p>
+                <Copy
+                  className="cursor-pointer ml-2 box-border"
+                  size={14}
+                  onClick={() => {
+                    toast.info("Copied to clipboard");
+                    navigator.clipboard.writeText(wallet.address);
+                  }}
+                />
+              </div>
+            </div>
+
+            <Button
+              variant={"ghost"}
+              className="h-fit w-fit p-0"
+              onClick={() => {
+                toast.success("Session logged out");
+                setTrigger(false);
+                removeUserCookie();
+              }}
+            >
+              <Image
+                src={"/icons/arrow.svg"}
+                height={30}
+                width={30}
+                alt="Arrow icon"
+              />
+            </Button>
+          </div>
+          <div className="flex flex-col pt-[69px] pb-[30px] px-[32px]">
+            <p className="text-[#7B7B7B] leading-[20.93px] text-[14px]">
+              In your wallet
+            </p>
+            <h1 className="text-[#02071D] leading-[60.8px] font-semibold text-[36px]">
+              {wallet.amount.toFixed(4)} {wallet.currency}
+            </h1>
+          </div>
+          <div className="py-[66px] px-[32px] flex flex-col overflow-scroll gap-[28px]">
+            <h2 className="text-[24px] font-extrabold leading-[29.05px] p-[11px] ">
+              Your NFTs
+            </h2>
+            {!!cart?.nfts?.length ? (
+              cart?.nfts?.map((nft) => (
+                <div
+                  key={nft.id}
+                  className="h-[227px] rounded-[34px] flex flex-shrink-0 relative overflow-hidden"
+                >
+                  <Image
+                    src={nft.image}
+                    fill
+                    className="object-cover"
+                    alt={nft.title}
+                  />
+                </div>
+              ))
+            ) : (
+              <div className="w-full justify-center items-center pt-10 flex flex-col gap-10">
+                <p className="text-muted-foreground">
+                  You don’t own any NFTs yet
+                </p>
+                <Button
+                  onClick={() => {
+                    setTrigger(false);
+                  }}
+                >
+                  Start Shopping
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

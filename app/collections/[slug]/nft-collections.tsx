@@ -8,6 +8,7 @@ import { useSetAtom } from "jotai";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { CollectionWithNfts, Nft } from "@/db/schema";
+import { toast } from "sonner";
 
 const NFTPage = ({
   title,
@@ -78,9 +79,9 @@ export const NFTCard = ({ image, title, price, currency, id }: Nft) => {
     if (!isLoggedIn) {
       router.push(`/connect?from=${pathName}`);
     } else {
-      await updateCart({ nftId: item.id, walletId: Number(walletId) }).catch(
-        (err) => alert(err.message)
-      );
+      await updateCart({ nftId: item.id, walletId: Number(walletId) })
+        .then(() => toast.success("Item added to cart"))
+        .catch((err) => toast.error(err.message));
       setTrigger(true);
     }
   };

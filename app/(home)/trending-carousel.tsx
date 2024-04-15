@@ -16,6 +16,7 @@ import { sidebarState } from "@/lib/jotai";
 import { useRouter } from "next/navigation";
 import { getUserCookie, updateCart } from "@/lib/server-actions";
 import { CollectionWithNfts, Nft } from "@/db/schema";
+import { toast } from "sonner";
 
 const TrendingCarousel = ({
   slug,
@@ -33,9 +34,9 @@ const TrendingCarousel = ({
     const { isLoggedIn, walletId } = await getUserCookie();
     if (!isLoggedIn) router.push("/connect");
     else {
-      await updateCart({ nftId: item.id, walletId: Number(walletId) }).catch(
-        (error) => alert(error.message)
-      );
+      await updateCart({ nftId: item.id, walletId: Number(walletId) })
+        .then(() => toast.success("Item added to cart"))
+        .catch((error) => toast.error(error.message));
       setTrigger(true);
     }
   };
@@ -79,7 +80,7 @@ const TrendingCarousel = ({
         ))}
       </div>
       <div className="bg-[#E6E9F2] rounded-[30px] w-full h-[518px] lg:pr-[87px] lg:pt-[47px] lg:pb-[60px] lg:pl-[74px] lg:py-8 p-3">
-        <div className="flex lg:flex-row flex-col-reverse items-center justify-between gap-8 lg:gap-20">
+        <div className="flex lg:flex-row flex-col-reverse items-center justify-between gap-8 ">
           <div className="lg:h-[411px] w-full lg:py-[24px]">
             <div className="mb-[37px]">
               <Badge className="text-black bg-[#FADFE4]">Trending Now</Badge>

@@ -1,13 +1,14 @@
-import { eq } from 'drizzle-orm';
-import { db } from './intialize';
+import { eq } from "drizzle-orm";
+import { db } from "./intialize";
 import {
   Cart,
   CollectionWithNfts,
   cartNfts,
   carts,
   collections,
+  nfts,
   wallets,
-} from './schema';
+} from "./schema";
 
 export const getSingleCollection = async (
   slug: string
@@ -49,7 +50,7 @@ export const getAllCollections = async (): Promise<CollectionWithNfts[]> => {
   });
 
   if (!records) {
-    throw new Error('No trending collection found');
+    throw new Error("No trending collection found");
   }
 
   return records.map(({ nftCollections, ...collection }) => ({
@@ -95,7 +96,6 @@ export const addNftToCart = async ({
   cartId: number;
   nftId: number;
 }) => {
- 
   return await db.insert(cartNfts).values({ cartId, nftId }).returning();
 };
 
@@ -105,4 +105,26 @@ export const getWallet = async (walletId: number) => {
   });
 
   return record;
+};
+
+export const getNft = async (nftId: number) => {
+  const record = await db.query.nfts.findFirst({
+    where: eq(nfts.id, nftId),
+  });
+
+  return record;
+};
+
+export const updateWallet = async ({
+  walletId,
+  amount,
+}: {
+  walletId: number;
+  amount: number;
+}) => {
+  return await db
+    .update(wallets)
+    .set({ amount })
+    .where(eq(wallets.id, walletId))
+    .returning();
 };
