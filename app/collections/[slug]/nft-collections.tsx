@@ -3,11 +3,11 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { sidebarState } from "@/lib/jotai";
-import { getUserCookie, updateUserData } from "@/lib/server-actions";
-import { collectionItemType, NftType } from "@/lib/types";
+import { getUserCookie, updateCart } from "@/lib/server-actions";
 import { useSetAtom } from "jotai";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { CollectionWithNfts, Nft } from "@/db/schema";
 
 const NFTPage = ({
   title,
@@ -15,31 +15,35 @@ const NFTPage = ({
   image,
   artist,
   avatar,
-  currency,
-  nftList,
-}: collectionItemType) => {
+  nfts,
+}: CollectionWithNfts) => {
+  console.log(description);
   return (
     <section className="flex flex-col py-2 lg:pt-[130px] gap-[134px]">
       <div className=" lg:pr-[87px] lg:pl-[74px] flex flex-col-reverse lg:flex-row justify-between gap-3 lg:gap-20">
-        <div className="w-full h-[411px] bg-red-400 flex flex-col items-center lg:items-start justify-between">
-          <div className="mb-6">
+        <div className="w-full h-[411px] flex flex-col items-center lg:items-start">
+          <div className="mb-[37px]">
             <Badge className="text-black bg-[#FADFE4]">Trending Now</Badge>
           </div>
-          <p className="text-muted-foreground text-xl">Collection</p>
-          <h1 className="lg:text-5xl text-3xl font-extrabold tracking-wide">
+          <p className="text-[#617587] leading-[29.05px] lg:text-[24px]">
+            Collection
+          </p>
+          <h1 className="text-2xl font-extrabold leading-[77.45px] lg:text-[64px]">
             {title}
           </h1>
-          <div className="py-3 text-center lg:text-start leading-7">
+          <div className="pt-[12px] pb-[29px] text-[16px] text-center lg:text-start leading-[36.32px]">
             {description}
           </div>
-          <div className="flex gap-4 py-5">
-            <Avatar className="size-12">
-              <AvatarImage src={avatar} alt="avatar" />
+          <div className="flex gap-[15px] items-center pb-[26px]">
+            <Avatar className="size-[68px]">
+              <AvatarImage src={avatar} alt={"Avatar"} />
               <AvatarFallback>{artist}</AvatarFallback>
             </Avatar>
             <div>
-              <p className="text-muted-foreground text-[12px]">Artist</p>
-              <p>{artist}</p>
+              <p className=" text-[#617587] leading-[14.52px] text-[12px]">
+                Artist
+              </p>
+              <p className=" leading-[29.05px] text-[24px]">{artist}</p>
             </div>
           </div>
         </div>
@@ -48,15 +52,15 @@ const NFTPage = ({
           alt={title}
           height={411}
           width={437}
-          className="lg:size-[400px] rounded-[47px]"
+          className=" rounded-[47px]"
         />
       </div>
 
-      <section className="flex flex-col py-10 gap-5 my-10">
-        <h2 className="text-[24px] font-extrabold ">NFTs</h2>
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-          {nftList.map((nft) => (
-            <NFTCard key={nft.id} currency={currency} {...nft} />
+      <section className="flex flex-col gap-[54px]">
+        <h2 className="text-[24px] leading-[29.05px] font-extrabold ">NFTs</h2>
+        <div className="grid grid-cols-1 gap-y-[30px] gap-x-[40px] sm:grid-cols-2 lg:grid-cols-3">
+          {nfts.map((nft) => (
+            <NFTCard key={nft.id} {...nft} />
           ))}
         </div>
       </section>
@@ -64,52 +68,42 @@ const NFTPage = ({
   );
 };
 
-export const NFTCard = ({
-  image,
-  title,
-  price,
-  currency,
-  id,
-}: NftType & { currency: string }) => {
+export const NFTCard = ({ image, title, price, currency, id }: Nft) => {
   const router = useRouter();
   const pathName = usePathname();
   const setTrigger = useSetAtom(sidebarState);
 
-  const handleBuy = async (item: NftType) => {
-    const { isLoggedIn, nftCollections, ...others } = await getUserCookie();
-    if (!isLoggedIn) router.push(`/connect?from=${pathName}`);
-    else {
-      const itemExists = nftCollections.find((nft) => nft.id === item.id);
-      if (!itemExists) {
-        updateUserData({
-          isLoggedIn,
-          nftCollections: [item, ...nftCollections],
-          ...others,
-        });
-      }
+  const handleBuy = async (item: Nft) => {
+    const { isLoggedIn, walletId } = await getUserCookie();
+    if (!isLoggedIn) {
+      router.push(`/connect?from=${pathName}`);
+    } else {
+      await updateCart({ nftId: item.id, walletId: Number(walletId) }).catch(
+        (err) => alert(err.message)
+      );
       setTrigger(true);
     }
   };
   return (
-    <div className="flex flex-col p-6 group bg-white rounded-[47px] shadow-tile cursor-pointer hover:shadow-hover border-none transition">
-      <div className="relative  bg-black/20 flex h-80 justify-center rounded-[34px]  overflow-hidden">
+    <div className="flex flex-col p-[16px] group bg-white rounded-[47px] shadow-tile cursor-pointer hover:shadow-hover transition">
+      <div className="relative bg-[#D9D9D9]/20 flex h-[345px]  justify-center rounded-[34px] overflow-hidden">
         <Image
           src={image}
           alt={title}
           fill
-          className="group-hover:scale-110 duration-500 ease-out transition-transform object-cover"
+          className="group-hover:scale-110 duration-500  ease-out transition-transform object-cover"
         />
         <Button
           variant={"secondary"}
           className="absolute bottom-1/2 z-10 left-1/2 -translate-x-1/2 translate-y-1/2 hidden group-hover:block"
-          onClick={() => handleBuy({ image, title, price, id })}
+          onClick={() => handleBuy({ image, title, price, id, currency })}
         >
           Buy
         </Button>
         <div className="absolute inset-0 bg-black/60 hidden group-hover:block" />
       </div>
-      <div className="flex items-center justify-between my-10">
-        <p className="text-[24px] font-bold">{title}</p>
+      <div className="flex items-center justify-between px-[5px] py-[42px]">
+        <p className="text-[24px] max-w-[300px] font-bold truncate">{title}</p>
         <Badge className="text-black bg-[#D4D3EB]">
           {price} {currency}
         </Badge>

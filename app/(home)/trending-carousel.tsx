@@ -1,42 +1,41 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import { Badge } from "./ui/badge";
+import { Badge } from "../../components/ui/badge";
 import Image from "next/image";
-import { Progress } from "./ui/progress";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Button } from "./ui/button";
-import { collectionItemType, NftType } from "@/lib/types";
+import { Progress } from "../../components/ui/progress";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "../../components/ui/avatar";
+import { Button } from "../../components/ui/button";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSetAtom } from "jotai";
 import { sidebarState } from "@/lib/jotai";
 import { useRouter } from "next/navigation";
-import { getUserCookie, updateUserData } from "@/lib/server-actions";
+import { getUserCookie, updateCart } from "@/lib/server-actions";
+import { CollectionWithNfts, Nft } from "@/db/schema";
 
 const TrendingCarousel = ({
   slug,
   title,
   artist,
   avatar,
-  nftList,
-}: collectionItemType) => {
+  nfts,
+}: CollectionWithNfts) => {
   const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const setTrigger = useSetAtom(sidebarState);
 
-  const handleBuy = async (item: NftType) => {
-    const { isLoggedIn, nftCollections, ...others } = await getUserCookie();
+  const handleBuy = async (item: Nft) => {
+    const { isLoggedIn, walletId } = await getUserCookie();
     if (!isLoggedIn) router.push("/connect");
     else {
-      const itemExists = nftCollections.find((nft) => nft.id === item.id);
-      if (!itemExists) {
-        updateUserData({
-          isLoggedIn,
-          nftCollections: [item, ...nftCollections],
-          ...others,
-        });
-      }
+      await updateCart({ nftId: item.id, walletId: Number(walletId) }).catch(
+        (error) => alert(error.message)
+      );
       setTrigger(true);
     }
   };
@@ -45,7 +44,7 @@ const TrendingCarousel = ({
     const timer = setInterval(() => {
       setProgress((oldProgress) => {
         if (oldProgress >= 10000) {
-          setCurrentIndex((currentIndex + 1) % nftList.length);
+          setCurrentIndex((currentIndex + 1) % nfts.length);
           return 0;
         }
         return oldProgress + 100;
@@ -55,14 +54,14 @@ const TrendingCarousel = ({
     return () => {
       clearInterval(timer);
     };
-  }, [currentIndex, nftList.length]);
+  }, [currentIndex, nfts.length]);
 
-  const currentItem = nftList[currentIndex];
+  const currentItem = nfts[currentIndex];
 
   return (
     <section className="flex flex-col gap-[15px] pt-[54px] pb-[61px]">
       <div className="flex gap-8  px-[25px]">
-        {nftList.map((_, index) => (
+        {nfts.map((_, index) => (
           <Progress
             onClick={() => {
               setProgress(0);
@@ -97,7 +96,9 @@ const TrendingCarousel = ({
                 <AvatarFallback>{artist}</AvatarFallback>
               </Avatar>
               <div>
-                <p className=" text-[#617587] text-[12px]">Artist</p>
+                <p className=" text-[#617587] leading-[14.52px] text-[12px]">
+                  Artist
+                </p>
                 <p className=" leading-[29.05px] text-[24px]">{artist}</p>
               </div>
             </div>

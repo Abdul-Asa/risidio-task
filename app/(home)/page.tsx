@@ -1,10 +1,12 @@
-import CollectionList from "@/components/collections";
+import CollectionList from "@/app/(home)/collections";
 import Footer from "@/components/layouts/footer";
 import Header from "@/components/layouts/header";
-import TrendingCarousel from "@/components/trending-carousel";
-import { collectionItems } from "@/lib/mock-api";
+import TrendingCarousel from "@/app/(home)/trending-carousel";
+import { getAllCollections } from "@/db/queries";
+// import { collectionItems } from "@/lib/mock-api";
 
-export default function Home() {
+export default async function Home() {
+  const collectionItems = await getAllCollections();
   const trendingCollection = collectionItems.find((item) => item.trending);
 
   return (
@@ -16,7 +18,7 @@ export default function Home() {
         ) : (
           <TrendingCarousel {...collectionItems[0]} />
         )}
-        <CollectionList />
+        <CollectionList {...collectionItems} />
       </div>
       <Footer />
     </main>

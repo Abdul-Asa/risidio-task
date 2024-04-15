@@ -1,33 +1,38 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { walletList } from "@/lib/mock-api";
 import { setUserCookie } from "@/lib/server-actions";
 import { useSearchParams } from "next/navigation";
+import { Wallet } from "@/db/schema";
+import Image from "next/image";
 
-export const WalletList = () => {
+export const WalletList = ({ wallets }: { wallets: Array<Wallet> }) => {
   const searchParams = useSearchParams();
   const redirectPath = searchParams.get("from") || "/";
-  return walletList.map((wallet) => (
+
+  return wallets.map((wallet) => (
     <Button
       key={wallet.name}
       variant={"ghost"}
-      className=" lg:size-40 size-20 bg-white rounded-xl flex justify-center items-center hover:border-2"
+      className=" lg:w-[191px] lg:h-[174px] size-40 bg-white rounded-[19px] flex justify-center items-center hover:border-2"
       onClick={() =>
         setUserCookie(
           {
-            id: "STV6Q...4Z7WD",
-            name: "John Doe",
-            amount: 100,
-            currency: "ETH",
+            walletId: wallet.id,
+            address: wallet.address,
             wallet: wallet.name,
-            nftCollections: [],
             isLoggedIn: true,
           },
           redirectPath
         )
       }
     >
-      <p className="text-xs lg:text-base">{wallet.name}</p>
+      <Image
+        src={wallet.icon}
+        alt={wallet.name}
+        width={191}
+        height={174}
+        className="mix-blend-multiply"
+      />
     </Button>
   ));
 };

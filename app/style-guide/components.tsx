@@ -1,9 +1,9 @@
-import { CollectionCard } from "./collections";
-import { NFTCard } from "../app/collections/[slug]/nft-collections";
-import SideBar from "./layouts/sidebar";
-import TrendingCarousel from "./trending-carousel";
-import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
+import { CollectionCard } from "../(home)/collections";
+import { NFTCard } from "../collections/[slug]/nft-collections";
+import SideBar from "../../components/layouts/sidebar";
+import TrendingCarousel from "../(home)/trending-carousel";
+import { Badge } from "../../components/ui/badge";
+import { Button } from "../../components/ui/button";
 import { collectionItems } from "@/lib/mock-api";
 const Components = () => {
   return (

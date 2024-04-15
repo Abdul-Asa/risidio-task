@@ -1,4 +1,4 @@
-import Components from "@/components/components";
+import Components from "@/app/style-guide/components";
 import Footer from "@/components/layouts/footer";
 import Header from "@/components/layouts/header";
 

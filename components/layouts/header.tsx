@@ -4,9 +4,13 @@ import { getUserCookie } from "@/lib/server-actions";
 import Image from "next/image";
 import SideBar from "./sidebar";
 import AccountButton from "./account-button";
+import { getUserWalletNftCart, getWallet } from "../../db/queries";
 
 const Header = async () => {
   const userSession = await getUserCookie();
+  const walletId = Number(userSession.walletId);
+  const wallet = await getWallet(walletId);
+  const cart = await getUserWalletNftCart(walletId);
 
   return (
     <nav className="flex items-center justify-between ">
@@ -21,7 +25,7 @@ const Header = async () => {
         </Link>
       )}
 
-      {userSession.isLoggedIn && <SideBar {...userSession} />}
+      {userSession.isLoggedIn && <SideBar cart={cart} wallet={wallet} />}
     </nav>
   );
 };

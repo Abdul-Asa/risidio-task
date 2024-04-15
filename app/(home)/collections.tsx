@@ -1,19 +1,22 @@
 import Image from "next/image";
-import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Button } from "../../components/ui/button";
+import { Badge } from "../../components/ui/badge";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "../../components/ui/avatar";
 import Link from "next/link";
-import { collectionItems } from "@/lib/mock-api";
-import { collectionItemType } from "@/lib/types";
+import { CollectionWithNfts } from "@/db/schema";
 
-const CollectionList = () => {
+const CollectionList = (collectionItems: CollectionWithNfts[]) => {
   return (
     <section className="flex flex-col pt-[60px] gap-[41px]">
       <h2 className="text-[24px] leading-[29.05px] font-extrabold ">
         Collections
       </h2>
       <div className="grid grid-cols-1 gap-[40px] sm:grid-cols-2 lg:grid-cols-3">
-        {collectionItems.map((collection) => (
+        {Object.values(collectionItems).map((collection) => (
           <CollectionCard key={collection.slug} {...collection} />
         ))}
       </div>
@@ -29,10 +32,10 @@ export const CollectionCard = ({
   slug,
   lowestPrice,
   highestPrice,
-  numberOfNFTs,
+  numberOfNfts,
   avatar,
-  currency,
-}: collectionItemType) => {
+  nfts,
+}: CollectionWithNfts) => {
   return (
     <Link
       href={`/collections/${slug}`}
@@ -42,7 +45,8 @@ export const CollectionCard = ({
         <Image
           src={image}
           alt={title}
-          fill
+          height={227}
+          width={391}
           className="group-hover:scale-110 w-full h-[227px] duration-500 ease-out transition-transform object-cover"
         />
         <Button
@@ -58,13 +62,13 @@ export const CollectionCard = ({
       </div>
       <div className="flex items-center justify-between pt-[40px] pb-[30px] px-[14px]">
         <p className="text-[24px] max-w-[300px] font-bold truncate">{title}</p>
-        <Badge className="text-black bg-[#E1EDD9]">{numberOfNFTs} NFT</Badge>
+        <Badge className="text-black bg-[#E1EDD9]">{numberOfNfts} NFT</Badge>
       </div>
       <div className=" px-[14px]">
         <p className="text-[#617587] leading-[16.94px] text-[14px]">
           Price Range : {lowestPrice}
-          {currency} - {highestPrice}
-          {currency}
+          {nfts[0].currency} - {highestPrice}
+          {nfts[0].currency}
         </p>
         <p className="text-[16px] leading-[24px] line-clamp-3">{description}</p>
       </div>

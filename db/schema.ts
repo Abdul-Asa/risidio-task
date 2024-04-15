@@ -74,14 +74,18 @@ export const carts = sqliteTable("carts", {
 export const cartNfts = sqliteTable("cart_nfts", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   cartId: integer("cart_id").references(() => carts.id),
-  nftId: integer("nft_id").references(() => nfts.id),
+  nftId: integer("nft_id")
+    .references(() => nfts.id)
+    .unique(),
 });
 
 //A wallet only has one cart
 export const walletRelations = relations(wallets, ({ one }) => ({
-  cart: one(carts),
+  cart: one(carts, {
+    fields: [wallets.id],
+    references: [carts.walletId],
+  }),
 }));
-
 //A cart can have multiple NFTs
 export const cartNftRelations = relations(cartNfts, ({ one }) => ({
   nfts: one(nfts, {

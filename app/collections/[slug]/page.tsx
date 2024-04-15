@@ -1,10 +1,10 @@
 import Footer from "@/components/layouts/footer";
 import Header from "@/components/layouts/header";
 import NFTPage from "@/app/collections/[slug]/nft-collections";
-import { collectionItems } from "@/lib/mock-api";
+import { getSingleCollection } from "@/db/queries";
 
-const CollectionPage = ({ params }: { params: { slug: string } }) => {
-  const foundItem = collectionItems.find((item) => item.slug === params.slug);
+const CollectionPage = async ({ params }: { params: { slug: string } }) => {
+  const foundItem = await getSingleCollection(params.slug);
 
   return (
     <main className="flex flex-col min-h-screen">

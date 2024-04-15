@@ -37,7 +37,7 @@ export const getSingleCollection = async (
   };
 };
 
-export const getAllCollections = async () => {
+export const getAllCollections = async (): Promise<CollectionWithNfts[]> => {
   const records = await db.query.collections.findMany({
     with: {
       nftCollections: {
@@ -95,6 +95,7 @@ export const addNftToCart = async ({
   cartId: number;
   nftId: number;
 }) => {
+ 
   return await db.insert(cartNfts).values({ cartId, nftId }).returning();
 };
 

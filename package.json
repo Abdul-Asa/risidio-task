@@ -10,7 +10,8 @@
     "db:migrate": "drizzle-kit push:sqlite",
     "db:seed": "tsx ./db/seed.ts",
     "db:init": "npm run db:migrate && npm run db:seed",
-    "db:init:local": "dotenv -e .env.local npm run db:init"
+    "db:init:local": "dotenv -e .env.local npm run db:init",
+    "db:init:dev": "npm run db:init && npx drizzle-kit studio"
   },
   "dependencies": {
     "@libsql/client": "^0.6.0",

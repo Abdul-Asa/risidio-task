@@ -105,15 +105,15 @@ export const WALLETS: Array<Wallet> = [
   {
     id: 1,
     name: "MetaMask",
-    icon: "/metamask.svg",
+    icon: "/icons/metamask.png",
     address: "STV6Q...4Z7WD",
-    amount: 0.12,
+    amount: 120,
     currency: "BTC",
   },
   {
     id: 2,
     name: "Trust Wallet",
-    icon: "/trust-wallet.svg",
+    icon: "/icons/trust.png",
     address: "0x0987654321",
     amount: 0.12,
     currency: "BTC",
@@ -121,9 +121,9 @@ export const WALLETS: Array<Wallet> = [
   {
     id: 3,
     name: "Coinbase",
-    icon: "/coinbase-wallet.svg",
+    icon: "/icons/coinbase.png",
     address: "0x1234567890",
-    amount: 0.12,
+    amount: 200,
     currency: "BTC",
   },
 ];
@@ -141,15 +141,15 @@ const seed = async () => {
 
   // Seed DB
   await db.insert(collections).values(COLLECTIONS);
-  // await db.insert(nfts).values(NFTS);
-  // await db.insert(wallets).values(WALLETS);
-  // await db
-  //   .insert(nftCollections)
-  //   .values(
-  //     COLLECTIONS.flatMap((collection) =>
-  //       NFTS.map((nft) => ({ nftId: nft.id, collectionId: collection.id }))
-  //     )
-  //   );
+  await db.insert(nfts).values(NFTS);
+  await db.insert(wallets).values(WALLETS);
+  await db
+    .insert(nftCollections)
+    .values(
+      COLLECTIONS.flatMap((collection) =>
+        NFTS.map((nft) => ({ nftId: nft.id, collectionId: collection.id }))
+      )
+    );
   console.log("DB Seeded");
 };
 
