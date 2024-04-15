@@ -60,8 +60,8 @@ const TrendingCarousel = ({
   const currentItem = nftList[currentIndex];
 
   return (
-    <section className="flex flex-col py-8 gap-4">
-      <div className="flex gap-4 px-8">
+    <section className="flex flex-col gap-[15px] pt-[54px] pb-[61px]">
+      <div className="flex gap-8  px-[25px]">
         {nftList.map((_, index) => (
           <Progress
             onClick={() => {
@@ -79,32 +79,34 @@ const TrendingCarousel = ({
           />
         ))}
       </div>
-      <div className="bg-[#E6E9F2] rounded-[57px] lg:px-10 lg:py-8 p-3">
+      <div className="bg-[#E6E9F2] rounded-[30px] w-full h-[518px] lg:pr-[87px] lg:pt-[47px] lg:pb-[60px] lg:pl-[74px] lg:py-8 p-3">
         <div className="flex lg:flex-row flex-col-reverse items-center justify-between gap-8 lg:gap-20">
-          <div className="w-full flex flex-col justify-between items-center lg:items-start lg:p-8">
-            <div className="mb-8">
+          <div className="lg:h-[411px] w-full lg:py-[24px]">
+            <div className="mb-[37px]">
               <Badge className="text-black bg-[#FADFE4]">Trending Now</Badge>
             </div>
-            <p className="text-muted-foreground  text-xl">{title} collection</p>
-            <h1 className="lg:text-5xl text-2xl font-extrabold tracking-wide">
+            <p className="text-[#617587] leading-[29.05px] lg:text-[24px]">
+              {title} collection
+            </p>
+            <h1 className="text-2xl font-extrabold leading-[77.45px] lg:text-[64px]">
               {currentItem.title}
             </h1>
-            <div className="flex gap-4 py-5">
-              <Avatar className="size-12">
+            <div className="flex gap-[15px] items-center pt-[14px] pb-[44px]">
+              <Avatar className="size-[68px]">
                 <AvatarImage src={avatar} alt={"Avatar"} />
                 <AvatarFallback>{artist}</AvatarFallback>
               </Avatar>
               <div>
-                <p className=" text-muted-foreground text-[12px]">Artist</p>
-                <p>{artist}</p>
+                <p className=" text-[#617587] text-[12px]">Artist</p>
+                <p className=" leading-[29.05px] text-[24px]">{artist}</p>
               </div>
             </div>
-            <div className="flex flex-col lg:flex-row gap-4 pt-4">
-              <Button className="w-48" onClick={() => handleBuy(currentItem)}>
+            <div className="flex flex-col lg:flex-row lg:w-[514px] gap-4">
+              <Button className="w-full" onClick={() => handleBuy(currentItem)}>
                 Buy
               </Button>
-              <Link href={`/collections/${slug}`}>
-                <Button className="w-48" variant={"outline"}>
+              <Link href={`/collections/${slug}`} className="w-full">
+                <Button variant={"outline"} className="w-full">
                   See Collection
                 </Button>
               </Link>
@@ -115,7 +117,7 @@ const TrendingCarousel = ({
             alt={currentItem.title}
             height={411}
             width={437}
-            className="lg:size-[400px] rounded-[47px]"
+            className="lg:h-[411px] lg:w-[437px] rounded-[47px]"
           />
         </div>
       </div>

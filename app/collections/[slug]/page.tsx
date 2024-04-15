@@ -8,7 +8,7 @@ const CollectionPage = ({ params }: { params: { slug: string } }) => {
 
   return (
     <main className="flex flex-col min-h-screen">
-      <div className="flex flex-col gap-8 flex-grow lg:px-20 px-4 py-8">
+      <div className="flex flex-col flex-grow lg:px-[80px] px-[47px] pt-[33px] pb-[94px]">
         <Header />
         {foundItem ? <NFTPage {...foundItem} /> : <h1>Not in collection</h1>}
       </div>

@@ -8,9 +8,11 @@ import { collectionItemType } from "@/lib/types";
 
 const CollectionList = () => {
   return (
-    <section className="flex flex-col py-10 gap-5 mb-10">
-      <h2 className="text-[24px] font-extrabold ">Collections</h2>
-      <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="flex flex-col pt-[60px] gap-[41px]">
+      <h2 className="text-[24px] leading-[29.05px] font-extrabold ">
+        Collections
+      </h2>
+      <div className="grid grid-cols-1 gap-[40px] sm:grid-cols-2 lg:grid-cols-3">
         {collectionItems.map((collection) => (
           <CollectionCard key={collection.slug} {...collection} />
         ))}
@@ -34,14 +36,14 @@ export const CollectionCard = ({
   return (
     <Link
       href={`/collections/${slug}`}
-      className="flex flex-col p-6 group bg-white rounded-[47px] shadow-tile cursor-pointer hover:shadow-hover border-none transition"
+      className="flex flex-col p-[16px] group lg:h-[529px] bg-white rounded-[47px] shadow-tile cursor-pointer hover:shadow-hover border-none transition"
     >
-      <div className="relative h-52 bg-black/20 flex justify-center rounded-[34px]  overflow-hidden">
+      <div className="relative h-[227px] w-full bg-[#D9D9D9]/20 flex justify-center rounded-[34px]  overflow-hidden">
         <Image
           src={image}
           alt={title}
           fill
-          className="group-hover:scale-110 duration-500 ease-out transition-transform object-cover"
+          className="group-hover:scale-110 w-full h-[227px] duration-500 ease-out transition-transform object-cover"
         />
         <Button
           variant={"secondary"}
@@ -54,31 +56,26 @@ export const CollectionCard = ({
         </Button>
         <div className="absolute inset-0 bg-black/60 hidden group-hover:block" />
       </div>
-      <div className="flex items-center justify-between mt-10">
-        <p className="text-[24px] font-bold line-clamp-1">{title}</p>
+      <div className="flex items-center justify-between pt-[40px] pb-[30px] px-[14px]">
+        <p className="text-[24px] max-w-[300px] font-bold truncate">{title}</p>
         <Badge className="text-black bg-[#E1EDD9]">{numberOfNFTs} NFT</Badge>
       </div>
-      <div className="text-[14px] font-normal my-4 line-clamp-3">
-        <p className="text-muted-foreground text-[12px]">
+      <div className=" px-[14px]">
+        <p className="text-[#617587] leading-[16.94px] text-[14px]">
           Price Range : {lowestPrice}
           {currency} - {highestPrice}
           {currency}
         </p>
-        <p>
-          {description ||
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
-        </p>
+        <p className="text-[16px] leading-[24px] line-clamp-3">{description}</p>
       </div>
-      <div className="flex gap-4 py-5">
-        <Avatar>
-          <AvatarImage src={avatar} alt="Avatar Image" />
-          <AvatarFallback className="text-xs text-center">
-            {artist}
-          </AvatarFallback>
+      <div className="flex gap-[17px] px-[14px] pb-[16px] items-center pt-[38px] ">
+        <Avatar className="size-[40px]">
+          <AvatarImage src={avatar} alt={"Avatar"} />
+          <AvatarFallback>{artist}</AvatarFallback>
         </Avatar>
         <div>
-          <p className="text-[12px] text-muted-foreground ">Artist</p>
-          <p>{artist}</p>
+          <p className=" text-[#617587] text-[12px]">Artist</p>
+          <p className=" leading-[29.05px] text-[16px]">{artist}</p>
         </div>
       </div>
     </Link>

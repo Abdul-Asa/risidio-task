@@ -19,40 +19,39 @@ const NFTPage = ({
   nftList,
 }: collectionItemType) => {
   return (
-    <section className="flex flex-col py-2 lg:py-8 gap-4">
-      <div className="lg:p-10 ">
-        <div className="flex flex-col-reverse lg:flex-row justify-between gap-3 lg:gap-20">
-          <div className="w-full flex flex-col items-center lg:items-start justify-between lg:p-8">
-            <div className="mb-6">
-              <Badge className="text-black bg-[#FADFE4]">Trending Now</Badge>
-            </div>
-            <p className="text-muted-foreground text-xl">Collection</p>
-            <h1 className="lg:text-5xl text-3xl font-extrabold tracking-wide">
-              {title}
-            </h1>
-            <div className="py-3 text-center lg:text-start leading-7">
-              {description}
-            </div>
-            <div className="flex gap-4 py-5">
-              <Avatar className="size-12">
-                <AvatarImage src={avatar} alt="avatar" />
-                <AvatarFallback>{artist}</AvatarFallback>
-              </Avatar>
-              <div>
-                <p className="text-muted-foreground text-[12px]">Artist</p>
-                <p>{artist}</p>
-              </div>
+    <section className="flex flex-col py-2 lg:pt-[130px] gap-[134px]">
+      <div className=" lg:pr-[87px] lg:pl-[74px] flex flex-col-reverse lg:flex-row justify-between gap-3 lg:gap-20">
+        <div className="w-full h-[411px] bg-red-400 flex flex-col items-center lg:items-start justify-between">
+          <div className="mb-6">
+            <Badge className="text-black bg-[#FADFE4]">Trending Now</Badge>
+          </div>
+          <p className="text-muted-foreground text-xl">Collection</p>
+          <h1 className="lg:text-5xl text-3xl font-extrabold tracking-wide">
+            {title}
+          </h1>
+          <div className="py-3 text-center lg:text-start leading-7">
+            {description}
+          </div>
+          <div className="flex gap-4 py-5">
+            <Avatar className="size-12">
+              <AvatarImage src={avatar} alt="avatar" />
+              <AvatarFallback>{artist}</AvatarFallback>
+            </Avatar>
+            <div>
+              <p className="text-muted-foreground text-[12px]">Artist</p>
+              <p>{artist}</p>
             </div>
           </div>
-          <Image
-            src={image}
-            alt={title}
-            height={411}
-            width={437}
-            className="lg:size-[400px] rounded-[47px]"
-          />
         </div>
+        <Image
+          src={image}
+          alt={title}
+          height={411}
+          width={437}
+          className="lg:size-[400px] rounded-[47px]"
+        />
       </div>
+
       <section className="flex flex-col py-10 gap-5 my-10">
         <h2 className="text-[24px] font-extrabold ">NFTs</h2>
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
