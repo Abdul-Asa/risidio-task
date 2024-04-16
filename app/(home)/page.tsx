@@ -6,7 +6,6 @@ import { getAllCollections } from "@/db/queries";
 // import { collectionItems } from "@/lib/mock-api";
 
 export default async function Home() {
-  console.log("Home!!!!!!");
   const collectionItems = await getAllCollections();
   const trendingCollection = collectionItems.find((item) => item.trending);
 

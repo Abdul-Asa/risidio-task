@@ -98,7 +98,7 @@ const SideBar = ({
               In your wallet
             </p>
             <h1 className="text-[#02071D] leading-[60.8px] font-semibold text-[36px]">
-              {wallet.amount.toFixed(4)} {wallet.currency}
+              {wallet.amount.toFixed(3)} {wallet.currency}
             </h1>
           </div>
           <div className="py-[66px] px-[32px] flex flex-col overflow-scroll gap-[28px]">

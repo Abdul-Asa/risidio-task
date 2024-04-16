@@ -174,3 +174,49 @@ export const walletList = [
     icon: "/coinbase-wallet.svg",
   },
 ];
+
+export const mockCollectionWithNfts = {
+  id: 0,
+  title: "Night sky",
+  description:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  slug: "night-sky",
+  avatar: "/avatars/avatar.svg",
+  image: "/images/clouds.svg",
+  trending: false,
+  lowestPrice: 0.12,
+  highestPrice: 0.18,
+  numberOfNfts: 6,
+  artist: "Léa Jacquot",
+  nfts: [
+    {
+      id: 0,
+      title: "Night is coming",
+      image: "/images/clouds.svg",
+      price: 0.12,
+      currency: "BTC",
+    },
+    {
+      id: 1,
+      title: "With the stars",
+      image: "/images/star.svg",
+      price: 0.12,
+      currency: "BTC",
+    },
+    {
+      id: 2,
+      title: "Summer",
+      image: "/images/summer.svg",
+      price: 0.12,
+      currency: "BTC",
+    },
+  ],
+};
+
+export const mockNft = {
+  id: 0,
+  title: "Night is coming",
+  image: "/images/quiet.svg",
+  price: 0.92,
+  currency: "ETH",
+};

@@ -20,7 +20,7 @@ const NFTPage = ({
 }: CollectionWithNfts) => {
   return (
     <section className="flex flex-col py-2 pt-10 lg:pt-[130px] gap-[134px]">
-      <div className=" lg:pr-[87px] lg:pl-[74px] flex flex-col-reverse lg:flex-row justify-between gap-3 lg:gap-20">
+      <div className=" lg:pr-[87px] lg:pl-[74px] flex flex-col-reverse lg:flex-row items-center lg:items-start justify-between gap-3 lg:gap-20">
         <div className="w-full h-[411px] flex flex-col items-center lg:items-start">
           <div className="mb-[37px]">
             <Badge className="text-black bg-[#FADFE4]">Trending Now</Badge>
