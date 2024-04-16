@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a frontend implementation of a site similar to an NFT marketplace as part of the Risidio technical assessment. It follows the provided Figma file very closely, using Next.js 14 with server actions, Tailwind CSS for styling, and shadcn/ui to build UI components. It includes advanced features like cookie-based session authentication and connects an SQLite database with Drizzle ORM, hosted on TursoDb.
+This project is a frontend implementation of a site similar to an NFT marketplace as part of the Risidio technical assessment. It follows the provided Figma design very closely, using Next.js 14 with server actions, Tailwind CSS for styling, and shadcn/ui to build UI components. It includes advanced features like cookie-based session authentication and connects an SQLite database with Drizzle ORM, hosted on TursoDb.
 
 ## Technologies Used 🛠️
 
@@ -49,51 +49,51 @@ npm run build:init && npm start
 
 ## Features 🌟
 
-### Responsive Design 📐
+- Responsive Design 📐
 
-- Adjusts smoothly across different devices ensuring a seamless user experience no matter the screen size. From tablets to laptops to phones—every view is covered!
+  - Adjusts smoothly across different devices ensuring a seamless user experience no matter the screen size. From tablets to laptops to phones—every view is covered!
 
-### Pixel Perfect Implementation 🎨
+- Pixel Perfect Implementation 🎨
 
-- In the initial stages of the project, I made adjustments to padding and measurements based on my personal preferences, thinking to enhance the design. However, I realized that adhering to the original specifications Figma file was crucial, as my role was not to alter but to implement.
-- Meticulously implemented the Figma design provided by the design team, ensuring high fidelity in the visual implementation.
+  - In the initial stages of the project, I made adjustments to padding and measurements based on my personal preferences, thinking to enhance the design. However, I realized that adhering to the original specifications Figma file was crucial, as my role was not to alter but to implement.
+  - Meticulously implemented the Figma design provided by the design team, ensuring high fidelity in the visual implementation.
 
-### Cookie-based Authentication 🍪
+- Cookie-based Authentication 🍪
 
-### Dynamic Routes 🔀
+- Dynamic Routes 🔀
 
-- Each collection page is dynamically generated based on its slug. If a slug is not recognized, the application renders an error state
+  - Each collection page is dynamically generated based on its slug. If a slug is not recognized, the application renders an error state
 
-### Rerouting based on search params 🔙
+- Rerouting based on search params 🔙
 
-- Enhances user experience by returning users to their previous action page post-login.
-- If you try to buy an nft from collections page while not logged in, after logging in, it takees you back to that same page.
+  - Enhances user experience by returning users to their previous action page post-login.
+  - If you try to buy an nft from collections page while not logged in, after logging in, it takees you back to that same page.
 
-### Toast Notifications 🍞
+- Toast Notifications 🍞
 
-- Implements toast notifications for user actions. Pretty cool toast animations from Sonner library.
+  - Implements toast notifications for user actions. Pretty cool toast animations from Sonner library.
 
-### Jest Testing 🧪
+- Jest Testing 🧪
 
-### SQLite Database Integration 💾
+- SQLite Database Integration 💾
 
-- Utilizes an SQLite database to simulate a full-stack application environment.
+  - Utilizes an SQLite database to simulate a full-stack application environment.
 
-### Server Actions 🖥️
+- Server Actions 🖥️
 
-- Employs server actions for direct, secure interactions with the backend without exposing sensitive logic,
-- Similar to API calls but integrated directly within the frontend context for convenience.
+  - Employs server actions for direct, secure interactions with the backend without exposing sensitive logic,
+  - Similar to API calls but integrated directly within the frontend context for convenience.
 
-### ORM with Drizzle 🌀
+- ORM with Drizzle 🌀
 
-- Uses Drizzle ORM to create type-safe objects for database interactions.
-- It also improves Developer experience. ORM 🤝 VSCode Intellisense = 💯x Dev
+  - Uses Drizzle ORM to create type-safe objects for database interactions.
+  - It also improves Developer experience. ORM 🤝 VSCode Intellisense = 💯x Dev
 
-### Wallet and Cart Interaction 💳
+- Wallet and Cart Interaction 💳
 
-- Simulates e-commerce operations where purchasing an NFT subtracts from the virtual wallet balance directly.
+  - Simulates e-commerce operations where purchasing an NFT subtracts from the virtual wallet balance directly.
 
-### Subtle Animations and Interactions 🎭
+- Subtle Animations and Interactions 🎭
 
 ## Assumptions/Personal Preferences 🤔
 
