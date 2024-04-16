@@ -49,6 +49,14 @@ npm run build:init && npm start
 
 ## Features 🌟
 
+### Cookie-based Authentication 🍪
+
+### Jest Testing 🧪
+
+### Subtle Animations and Interactions 🎭
+
+## Assumptions/Personal Preferences 🤔
+
 ### Responsive Design 📐
 
 - Adjusts smoothly across different devices ensuring a seamless user experience no matter the screen size. From tablets to laptops to phones—every view is covered!
@@ -89,13 +97,6 @@ npm run build:init && npm start
 
 - Simulates e-commerce operations where purchasing an NFT subtracts from the virtual wallet balance directly.
 
-### Cookie-based Authentication 🍪
-
-### Jest Testing 🧪
-
-### Subtle Animations and Interactions 🎭
-
-## Assumptions/Personal Preferences 🤔
 
 ### Hosting Platform
 
