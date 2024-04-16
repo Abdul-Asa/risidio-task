@@ -4,14 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run db:init && next build",
+    "build": "next build",
+    "build:init": "npm run db:init && npm run build",
     "start": "next start",
     "lint": "next lint",
     "db:migrate": "drizzle-kit push:sqlite",
     "db:seed": "tsx ./db/seed.ts",
     "db:init": "npm run db:migrate && npm run db:seed",
     "db:init:local": "dotenv -e .env.local npm run db:init",
-    "db:init:dev": "npm run db:init:local && npx drizzle-kit studio"
+    "db:init:dev": "npm run db:init:local && npx drizzle-kit studio",
+    "test": "jest"
   },
   "dependencies": {
     "@libsql/client": "^0.6.0",
@@ -29,9 +31,13 @@
     "react-dom": "^18",
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.2.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^15.0.2",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -40,6 +46,8 @@
     "drizzle-kit": "^0.20.14",
     "eslint": "^8",
     "eslint-config-next": "14.2.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "tsx": "^4.7.2",
