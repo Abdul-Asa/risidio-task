@@ -58,8 +58,6 @@ npm run build:init && npm start
   - In the initial stages of the project, I made adjustments to padding and measurements based on my personal preferences, thinking to enhance the design. However, I realized that adhering to the original specifications Figma file was crucial, as my role was not to alter but to implement.
   - Meticulously implemented the Figma design provided by the design team, ensuring high fidelity in the visual implementation.
 
-- Cookie-based Authentication 🍪
-
 - Dynamic Routes 🔀
 
   - Each collection page is dynamically generated based on its slug. If a slug is not recognized, the application renders an error state
@@ -72,8 +70,6 @@ npm run build:init && npm start
 - Toast Notifications 🍞
 
   - Implements toast notifications for user actions. Pretty cool toast animations from Sonner library.
-
-- Jest Testing 🧪
 
 - SQLite Database Integration 💾
 
@@ -93,13 +89,19 @@ npm run build:init && npm start
 
   - Simulates e-commerce operations where purchasing an NFT subtracts from the virtual wallet balance directly.
 
+- Cookie-based Authentication 🍪
+
+- Jest Testing 🧪
+
 - Subtle Animations and Interactions 🎭
 
 ## Assumptions/Personal Preferences 🤔
 
 ### Hosting Platform
 
-- Although the project instructions specified hosting on Netlify, I used Vercel due to integration challenges with TursoDb on Netlify. In order to meet the deadline, I opted for vercel while I keep troubleshootingthe issue..
+- ~~Although the project instructions specified hosting on Netlify, I used Vercel due to integration challenges with TursoDb on Netlify. In order to meet the deadline, I opted for Vercel while I keep troubleshooting the issue.~~<br/>
+  Edit: I finally solved the issue.
+  Netliify link: https://asa-risidio-task.netlify.app/
 
 ### Image Formats
 
@@ -120,6 +122,8 @@ npm run build:init && npm start
 - Using Nextjs Server componenets & action
 - Created dynamic collection pages
 - Created a schema based on my interpretations
+
+## Conclusiion
 
 Overall, I had a blast working on this project! This task was more than just a test for me; it was a journey packed with growth and excitement. I really hope to bring this energy and passion to Risidio. Fingers crossed and looking forward to possibly joining! Last but not the least heres a some images for comparison:
 
