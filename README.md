@@ -38,7 +38,7 @@ TURSO_AUTH_TOKEN=
 4. **Run the development server**:
 
 ```bash
-npm run db:init:dev && run dev
+npm run db:init:dev && npm dev
 ```
 
 5. **Build and start the production server**:
