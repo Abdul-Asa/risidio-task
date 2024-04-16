@@ -125,7 +125,7 @@ npm run build:init && npm start
 
 ## Conclusiion
 
-Overall, I had a blast working on this project! This task was more than just a test for me; it was a journey packed with growth and excitement. I really hope to bring this energy and passion to Risidio. Fingers crossed and looking forward to possibly joining! Last but not the least heres a some images for comparison:
+Overall, I had a blast working on this project! This task was more than just a test for me; it was a journey packed with growth and excitement. I really hope to bring this energy and passion to Risidio. Fingers crossed and looking forward to possibly joining! Last but not the least, here are screeenshot vs figma images for comparison:
 
 <div style="display: flex; padding: 2px; justify-content: space-around;">
    <img src="./public/home-screenshot.png" width="40%" />
