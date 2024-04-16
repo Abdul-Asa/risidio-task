@@ -58,8 +58,6 @@ npm run build:init && npm start
 - In the initial stages of the project, I made adjustments to padding and measurements based on my personal preferences, thinking to enhance the design. However, I realized that adhering to the original specifications Figma file was crucial, as my role was not to alter but to implement.
 - Meticulously implemented the Figma design provided by the design team, ensuring high fidelity in the visual implementation.
 
-### Cookie-based Authentication 🍪
-
 ### Dynamic Routes 🔀
 
 - Each collection page is dynamically generated based on its slug. If a slug is not recognized, the application renders an error state
@@ -72,8 +70,6 @@ npm run build:init && npm start
 ### Toast Notifications 🍞
 
 - Implements toast notifications for user actions. Pretty cool toast animations from Sonner library.
-
-### Jest Testing 🧪
 
 ### SQLite Database Integration 💾
 
@@ -93,6 +89,10 @@ npm run build:init && npm start
 
 - Simulates e-commerce operations where purchasing an NFT subtracts from the virtual wallet balance directly.
 
+### Cookie-based Authentication 🍪
+
+### Jest Testing 🧪
+
 ### Subtle Animations and Interactions 🎭
 
 ## Assumptions/Personal Preferences 🤔
@@ -103,7 +103,7 @@ npm run build:init && npm start
 
 ### Image Formats
 
--- I used SVG exports from the Figma design for most images. However, some images could not be exported in SVG format, leading to inconsistent image formats/styling.
+- I used SVG exports from the Figma design for most images. However, some images could not be exported in SVG format, leading to inconsistent image formats/styling.
 
 ### Design
 
