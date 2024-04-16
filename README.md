@@ -38,7 +38,7 @@ TURSO_AUTH_TOKEN=
 4. **Run the development server**:
 
 ```bash
-npm run db:init:dev && run dev
+npm run db:init:dev && npm dev
 ```
 
 5. **Build and start the production server**:
@@ -103,7 +103,7 @@ npm run build:init && npm start
 
 ### Image Formats
 
--- I used SVG exports from the Figma design for most images. However, some images could not be exported in SVG format, leading to inconsistent image formats/styling.
+- I used SVG exports from the Figma design for most images. However, some images could not be exported in SVG format, leading to inconsistent image formats/styling.
 
 ### Design
 
