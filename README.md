@@ -109,7 +109,7 @@ npm run build:init && npm start
 
 ### Design
 
-- Added a black blur screen when the sidebar is active,, preventing interaction with other elements until the sidebar is closed.
+- Added a black blur screen when the sidebar is active, preventing interaction with other elements until the sidebar is closed.
 - Corrected a typo from "NTF" to "NFT," assuming it was an oversight in the original design.
 - Implemented toast notifications despite them not being part of the original design.
 - Made entire cards clickable on the home page instead of just the button.
@@ -123,7 +123,7 @@ npm run build:init && npm start
 - Created dynamic collection pages
 - Created a schema based on my interpretations
 
-## Conclusiion
+## Conclusion
 
 Overall, I had a blast working on this project! This task was more than just a test for me; it was a journey packed with growth and excitement. I really hope to bring this energy and passion to Risidio. Fingers crossed and looking forward to possibly joining! Last but not the least, here are screeenshot vs figma images for comparison:
 
