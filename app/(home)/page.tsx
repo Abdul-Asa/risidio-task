@@ -1,26 +1,23 @@
-import CollectionList from "@/app/(home)/collections";
 import Footer from "@/components/layouts/footer";
 import Header from "@/components/layouts/header";
-import TrendingCarousel from "@/app/(home)/trending-carousel";
-import { getAllCollections } from "@/db/queries";
 import { Suspense } from "react";
-// import { collectionItems } from "@/lib/mock-api";
+import PageItems from "./PageItems";
+
+// Delay function
 
 export default async function Home() {
-  const collectionItems = await getAllCollections();
-  const trendingCollection = collectionItems.find((item) => item.trending);
-
   return (
     <main className="flex flex-col min-h-screen">
       <div className="flex flex-col flex-grow lg:px-[80px] md:px-[47px] p-3 pt-[33px] pb-[153px]">
         <Header />
-        <Suspense fallback={<div>Loading...</div>}>
-          {trendingCollection ? (
-            <TrendingCarousel {...trendingCollection} />
-          ) : (
-            <TrendingCarousel {...collectionItems[0]} />
-          )}
-          <CollectionList {...collectionItems} />
+        <Suspense
+          fallback={
+            <div className="flex w-full h-full items-center justify-center">
+              <p>Loading...</p>
+            </div>
+          }
+        >
+          <PageItems />
         </Suspense>
       </div>
       <Footer />
