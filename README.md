@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a frontend implementation of a site similar to an NFT marketplace as part of the Risidio technical assessment. It follows the provided Figma design very closely, using Next.js 14 with server actions, Tailwind CSS for styling, and shadcn/ui to build UI components. It includes advanced features like cookie-based session authentication and connects an SQLite database with Drizzle ORM, hosted on TursoDb.
+This project is a frontend implementation of a site similar to an NFT marketplace as part of the Risidio technical assessment. It follows the provided Figma design very closely, using Next.js 14 with server actions, Tailwind CSS for styling, and shadcn/ui to build UI components. It includes advanced features like cookie-based session authentication and connects to a local SQLite database with Drizzle ORM.
 
 ## Technologies Used 🛠️
 
@@ -10,9 +10,8 @@ This project is a frontend implementation of a site similar to an NFT marketplac
 - **Tailwind CSS**: For styling.
 - **Radix UI && Shadcn/ui**: A headless component library and collection of re-usable components.
 - **Jotai**: State management
-- **SQLite & Drizzle ORM**: SQLite for database and Drizzle ORM for database interactions.
-- **TursoDb**: Hosting the SQLite database in the cloud.
-- **Vercel**: Deployment platform.
+- **SQLite & Drizzle ORM**: Local SQLite database for data persistence and Drizzle ORM for database interactions.
+- **Render**: Deployment platform.
 
 ## Installation 📦
 
@@ -28,20 +27,13 @@ git clone <repository-url>
 npm install
 ```
 
-3. **Configure your env file**:
-
-```env
-TURSO_DB_URL=
-TURSO_AUTH_TOKEN=
-```
-
-4. **Run the development server**:
+3. **Run the development server**:
 
 ```bash
 npm run db:init:dev && npm dev
 ```
 
-5. **Build and start the production server**:
+4. **Build and start the production server**:
 
 ```bash
 npm run build:init && npm start
@@ -73,7 +65,8 @@ npm run build:init && npm start
 
 - SQLite Database Integration 💾
 
-  - Utilizes an SQLite database to simulate a full-stack application environment.
+  - Utilizes a local SQLite database for data persistence.
+  - Simple and reliable database solution that works both in development and production.
 
 - Server Actions 🖥️
 
@@ -99,9 +92,8 @@ npm run build:init && npm start
 
 ### Hosting Platform
 
-- ~~Although the project instructions specified hosting on Netlify, I used Vercel due to integration challenges with TursoDb on Netlify. In order to meet the deadline, I opted for Vercel while I keep troubleshooting the issue.~~<br/>
-  Edit: I finally solved the issue.
-  Netliify link: https://asa-risidio-task.netlify.app/
+- The application is hosted on Render, providing reliable and scalable deployment with support for our SQLite setup.
+  Link: [https://risidio-task.onrender.com/]
 
 ### Image Formats
 
