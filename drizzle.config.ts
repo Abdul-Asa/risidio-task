@@ -15,5 +15,5 @@ export default {
   },
   out: "./db/migrations",
   verbose: true,
-  strict: true,
+  strict: false,
 } satisfies Config;
