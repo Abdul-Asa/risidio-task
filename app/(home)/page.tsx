@@ -3,8 +3,6 @@ import Header from "@/components/layouts/header";
 import { Suspense } from "react";
 import PageItems from "./PageItems";
 
-// Delay function
-
 export default async function Home() {
   return (
     <main className="flex flex-col min-h-screen">

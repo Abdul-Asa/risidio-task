@@ -8,9 +8,10 @@ export default {
   schema: "./db/schema.ts",
   driver: "turso",
   dbCredentials: {
-    // url: "file:./db/local.sqlite",
-    url: process.env.TURSO_DB_URL || "",
-    authToken: process.env.TURSO_AUTH_TOKEN,
+    // Local file database (persists between runs)
+    url: "file:./db/local.sqlite",
+    // No auth token needed for local file
+    // authToken: process.env.TURSO_AUTH_TOKEN,
   },
   out: "./db/migrations",
   verbose: true,
