@@ -32,12 +32,19 @@ const TrendingCarousel = ({
 
   const handleBuy = async (item: Nft) => {
     const { isLoggedIn, walletId } = await getUserCookie();
-    if (!isLoggedIn) router.push("/connect");
-    else {
-      await updateCart({ nftId: item.id, walletId: Number(walletId) })
-        .then(() => toast.success("Item added to cart"))
-        .catch((error) => toast.error(error.message));
-      setTrigger(true);
+    if (!isLoggedIn) {
+      router.push("/connect");
+    } else {
+      const result = await updateCart({
+        nftId: item.id,
+        walletId: Number(walletId),
+      });
+      if (result.success) {
+        toast.success("Item added to cart");
+        setTrigger(true);
+      } else {
+        toast.error(result.error || "Failed to add item to cart");
+      }
     }
   };
 

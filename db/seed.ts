@@ -107,7 +107,7 @@ export const WALLETS: Array<Wallet> = [
     name: "MetaMask",
     icon: "/icons/metamask.png",
     address: "STV6Q...4Z7WD",
-    amount: 120,
+    amount: 10000, // Very generous amount
     currency: "BTC",
   },
   {
@@ -115,7 +115,7 @@ export const WALLETS: Array<Wallet> = [
     name: "Trust Wallet",
     icon: "/icons/trust.png",
     address: "0x0987654321",
-    amount: 0.12,
+    amount: 5000, // Much more generous than 0.12
     currency: "BTC",
   },
   {
@@ -123,7 +123,7 @@ export const WALLETS: Array<Wallet> = [
     name: "Coinbase",
     icon: "/icons/coinbase.png",
     address: "0x1234567890",
-    amount: 200,
+    amount: 15000, // Very generous amount
     currency: "BTC",
   },
 ];

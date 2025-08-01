@@ -111,6 +111,7 @@ const TrendingCarousel = ({
             </div>
           </div>
           <Image
+            id={currentItem.id.toString()}
             src={currentItem.image}
             alt={currentItem.title}
             height={411}

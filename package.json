@@ -13,6 +13,7 @@
     "db:init": "npm run db:migrate && npm run db:seed",
     "db:init:local": "dotenv -e .env.local npm run db:init",
     "db:init:dev": "npm run db:init:local && npx drizzle-kit studio",
+    "start:full": "concurrently \"npm run dev\" \"npx drizzle-kit studio\"",
     "test": "jest"
   },
   "dependencies": {
@@ -41,6 +42,7 @@
     "@types/node": "^20.19.9",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
+    "concurrently": "^9.2.0",
     "dotenv": "^16.6.1",
     "dotenv-cli": "^7.4.4",
     "drizzle-kit": "^0.20.18",

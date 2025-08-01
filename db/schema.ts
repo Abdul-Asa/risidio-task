@@ -74,9 +74,7 @@ export const carts = sqliteTable("carts", {
 export const cartNfts = sqliteTable("cart_nfts", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   cartId: integer("cart_id").references(() => carts.id),
-  nftId: integer("nft_id")
-    .references(() => nfts.id)
-    .unique(),
+  nftId: integer("nft_id").references(() => nfts.id),
 });
 
 //A wallet only has one cart

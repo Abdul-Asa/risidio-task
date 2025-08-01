@@ -78,10 +78,16 @@ export const NFTCard = ({ image, title, price, currency, id }: Nft) => {
     if (!isLoggedIn) {
       router.push(`/connect?from=${pathName}`);
     } else {
-      await updateCart({ nftId: item.id, walletId: Number(walletId) })
-        .then(() => toast.success("Item added to cart"))
-        .catch((err) => toast.error(err.message));
-      setTrigger(true);
+      const result = await updateCart({
+        nftId: item.id,
+        walletId: Number(walletId),
+      });
+      if (result.success) {
+        toast.success("Item added to cart");
+        setTrigger(true);
+      } else {
+        toast.error(result.error || "Failed to add item to cart");
+      }
     }
   };
   return (

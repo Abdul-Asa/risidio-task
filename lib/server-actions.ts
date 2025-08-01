@@ -51,22 +51,32 @@ export async function updateCart({
 }: {
   walletId: number;
   nftId: number;
-}) {
+}): Promise<{ success: boolean; error?: string }> {
   try {
     const wallet = await getWallet(walletId);
     const nft = await getNft(nftId);
     const existingCart = await getUserWalletNftCart(walletId);
 
     if (!wallet || !nft) {
-      throw new Error("Wallet or NFT not found");
+      return { success: false, error: "Wallet or NFT not found" };
     }
 
     const cart = existingCart
       ? existingCart
       : await createWalletNftCart(Number(walletId));
 
+    // Check if NFT is already in this cart
+    if (existingCart?.nfts.some((cartNft) => cartNft.id === nftId)) {
+      // NFT already in cart, return success (idempotent operation)
+      return { success: true };
+    }
+
     if (nft.price > wallet.amount) {
-      throw new Error("Insufficient funds in wallet");
+      return {
+        success: false,
+        error:
+          "Insufficient funds in wallet. Please add more balance to continue.",
+      };
     }
 
     await updateWallet({
@@ -76,8 +86,16 @@ export async function updateCart({
     await addNftToCart({ cartId: cart.id, nftId });
 
     revalidatePath("/");
+    return { success: true };
   } catch (error) {
     console.error("Failed to add NFT to cart", error);
-    throw error; // Throw the error so it can be handled
+    // Return a user-friendly error instead of throwing
+    return {
+      success: false,
+      error:
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred while adding NFT to cart",
+    };
   }
 }
